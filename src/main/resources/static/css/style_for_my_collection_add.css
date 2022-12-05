@@ -1,0 +1,120 @@
+.maket-moi-kollekcii {
+  background-color: var(--white);
+  padding: 0 0 0px;
+  display: flex;
+  flex-direction: column;
+}
+.flex-wrapper-one {
+  background-size: 100% 100%;
+  background-position: center;
+  background-image: url("/static/images/my_collection_background.jpg");
+  margin-bottom: 67px;
+  padding: 26px 122px 117px 120px;
+  display: flex;
+  align-items: flex-start;
+}
+.pljushkin {
+  color: var(--pale-turquoise);
+  text-align: center;
+  margin-right: 171px;
+  font-family: var(--inter-64-medium-family);
+  font-size: var(--inter-64-medium-size);
+  font-weight: var(--inter-64-medium-weight);
+  line-height: var(--inter-64-medium-line-height);
+}
+.moi-kollekcii {
+  font-family: "Inter", serif;
+  font-size: 96px;
+  font-weight: 400;
+  line-height: normal;
+  color: var(--pale-turquoise);
+  text-align: center;
+  margin-top: 91px;
+  margin-right: 37px;
+}
+.glavnaja-stranica {
+  max-width: 189px;
+  color: var(--white);
+  text-align: center;
+  margin-right: 108px;
+  font-family: var(--lexend-tera-32-black-family);
+  font-size: var(--lexend-tera-32-black-size);
+  font-weight: var(--lexend-tera-32-black-weight);
+  line-height: var(--lexend-tera-32-black-line-height);
+}
+.lichnyj-kabinet {
+  max-width: 140px;
+  color: var(--white);
+  text-align: center;
+  font-family: var(--lexend-tera-32-black-family);
+  font-size: var(--lexend-tera-32-black-size);
+  font-weight: var(--lexend-tera-32-black-weight);
+  line-height: var(--lexend-tera-32-black-line-height);
+}
+.net-kollekcii-sozdajte {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.zdes-poka-pusto-sozdajte-pervuju-kollek {
+  font-family: "Lemon", serif;
+  font-size: 48px;
+  font-weight: 400;
+  line-height: normal;
+  color: var(--teal);
+  text-align: center;
+  margin-bottom: 34px;
+}
+.knopka {
+  background-color: var(--teal);
+  border-radius: 38px;
+  padding: 19px 66px 7px;
+  display: flex;
+  align-items: center;
+}
+.sozdat-kollekciju {
+  color: var(--white);
+  flex: 1;
+  align-self: stretch;
+  text-align: center;
+  font-family: var(--lexend-tera-30-black-family);
+  font-size: var(--lexend-tera-30-black-size);
+  font-weight: var(--lexend-tera-30-black-weight);
+  line-height: var(--lexend-tera-30-black-line-height);
+}
+
+/* This is the project stylesheet */
+/* Ниже идут шрифты и цвета */
+
+:root {
+  /* Colors */
+  --black: rgba(0, 0, 0, 1);
+  --pale-turquoise: rgba(144, 244, 254, 1);
+  --teal: rgba(27, 109, 117, 1);
+  --white: rgba(255, 255, 255, 1);
+
+  /* Typographies */
+  /* inter-64-extra-bold */
+  --inter-64-extra-bold-family: "Inter";
+  --inter-64-extra-bold-size: 64px;
+  --inter-64-extra-bold-weight: 800;
+  --inter-64-extra-bold-line-height: normal;
+
+  /* inter-64-medium */
+  --inter-64-medium-family: "Inter";
+  --inter-64-medium-size: 64px;
+  --inter-64-medium-weight: 500;
+  --inter-64-medium-line-height: normal;
+
+  /* lexend-tera-30-black */
+  --lexend-tera-30-black-family: "Lexend Tera";
+  --lexend-tera-30-black-size: 30px;
+  --lexend-tera-30-black-weight: 900;
+  --lexend-tera-30-black-line-height: normal;
+
+  /* lexend-tera-32-black */
+  --lexend-tera-32-black-family: "Lexend Tera";
+  --lexend-tera-32-black-size: 32px;
+  --lexend-tera-32-black-weight: 900;
+  --lexend-tera-32-black-line-height: normal;
+}
