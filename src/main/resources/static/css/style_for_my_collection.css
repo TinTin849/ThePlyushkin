@@ -7,7 +7,7 @@
 .flex-wrapper-one {
   background-size: 100% 100%;
   background-position: center;
-  background-image: url("/static/images/my_collection_background.jpg");
+  background-image: url("../images/my_collection_background.jpg");
   margin-bottom: 67px;
   padding: 26px 122px 117px 120px;
   display: flex;
