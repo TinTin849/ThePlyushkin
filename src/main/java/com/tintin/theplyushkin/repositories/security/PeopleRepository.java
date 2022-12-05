@@ -1,4 +1,4 @@
-package com.tintin.theplyushkin.repositories;
+package com.tintin.theplyushkin.repositories.security;
 
 import com.tintin.theplyushkin.models.security.Person;
 import org.springframework.data.jpa.repository.JpaRepository;

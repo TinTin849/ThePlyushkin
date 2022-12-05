@@ -33,11 +33,11 @@ public class Person {
     @Column(name = "password")
     private String password;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "access", referencedColumnName = "id")
     private AccessLevel role;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "visibility", referencedColumnName = "id")
     private VisibilityLevel visibility;
 

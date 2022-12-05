@@ -28,13 +28,16 @@
             <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>
 
             <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Логин</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                <label for="username" class="form-label">Логин</label>
+                <input type="text" class="form-control" name="username" id="username" aria-describedby="username">
             </div>
+
             <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Пароль</label>
-                <input type="password" class="form-control" id="exampleInputPassword1">
+                <label for="password" class="form-label">Пароль</label>
+                <input type="password" class="form-control"
+                       name="password" id="password" placeholder="Введите пароль">
             </div>
+
             <button type="submit" class="btn btn-primary">Войти</button>
 
             <div th:if="${param.error}" class="alert alert-warning alert-dismissible fade show" role="alert">
@@ -44,7 +47,7 @@
         </form>
         <br>
         <div class="alert alert-primary fs-6" role="alert">
-            Новичок в Плюшкине? <a href="/registration" class="alert-link">Создай аккаунт</a>
+            Новичок в Плюшкине? <a href="/auth/registration" class="alert-link">Создай аккаунт</a>
         </div>
     </div>
 </section>

@@ -1,7 +1,7 @@
 package com.tintin.theplyushkin.services.security;
 
 import com.tintin.theplyushkin.models.security.Person;
-import com.tintin.theplyushkin.repositories.PeopleRepository;
+import com.tintin.theplyushkin.repositories.security.PeopleRepository;
 import com.tintin.theplyushkin.security.PersonDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;

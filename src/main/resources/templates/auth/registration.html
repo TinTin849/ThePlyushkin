@@ -26,23 +26,30 @@
         <br>
         <form th:method="POST" th:action="@{/auth/registration}" th:object="${person}">
             <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Email адрес</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" placeholder="example@gmail.com"
+                <label for="email" class="form-label">Email адрес</label>
+                <input type="email" class="form-control" th:field="*{email}" id="email" placeholder="example@gmail.com"
                        aria-describedby="emailHelp">
                 <div id="emailHelp" class="form-text">Мы никогда не передадим вашу электронную почту кому-либо еще</div>
             </div>
 
             <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Логин</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                <div id="emailHelp" class="form-text">Запомните ваш логин! Он нужен для последующей авторизации на
+                <label for="phone" class="form-label">Мобильный телефон</label>
+                <input type="text" class="form-control" th:field="*{phone}" id="phone" placeholder="8 (   ) -   -   "
+                       aria-describedby="phoneHelp">
+                <div id="phoneHelp" class="form-text">Телефон для верификации</div>
+            </div>
+
+            <div class="mb-3">
+                <label for="username" class="form-label">Логин</label>
+                <input type="text" class="form-control" th:field="*{username}" id="username" aria-describedby="name">
+                <div id="name" class="form-text">Запомните ваш логин! Он нужен для последующей авторизации на
                     сайте
                 </div>
             </div>
 
             <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Пароль</label>
-                <input type="password" class="form-control" id="exampleInputPassword1">
+                <label for="password" class="form-label">Пароль</label>
+                <input type="password" class="form-control" id="password" th:field="*{password}">
                 <div id="passwordHelp" class="form-text">Запомните ваш пароль! Он также нужен для последующей
                     авторизации на сайте
                 </div>
