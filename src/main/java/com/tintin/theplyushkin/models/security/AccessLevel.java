@@ -3,7 +3,6 @@ package com.tintin.theplyushkin.models.security;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 import org.hibernate.annotations.Cascade;
 
 import javax.persistence.Column;
@@ -19,7 +18,6 @@ import java.util.List;
 @Table(name = "access_levels")
 @Getter
 @Setter
-@ToString
 @NoArgsConstructor
 public class AccessLevel {
     @Id
