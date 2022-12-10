@@ -18,10 +18,10 @@ public class FeatureOfCollectionType {
     private int id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "collection_type")
+    @JoinColumn(name = "collection_type", referencedColumnName = "id")
     private TypeOfCollection collectionType;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "item_feature")
-    private FeatureOfItem itemFeature;
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "item_feature", referencedColumnName = "id")
+    private Feature itemFeature;
 }

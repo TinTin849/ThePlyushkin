@@ -5,8 +5,10 @@ import com.tintin.theplyushkin.models.security.VisibilityLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Table(name = "collections")
@@ -40,4 +42,8 @@ public class Collection {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "visibility", referencedColumnName = "id")
     private VisibilityLevel visibility;
+
+    @OneToMany(mappedBy = "collection", fetch = FetchType.LAZY)
+    @Cascade(org.hibernate.annotations.CascadeType.REMOVE)
+    private List<CollectionItem> itemsOfCollection;
 }

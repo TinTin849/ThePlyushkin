@@ -1,6 +1,7 @@
-package com.tintin.theplyushkin.services.security;
+package com.tintin.theplyushkin.services;
 
 import com.tintin.theplyushkin.models.Collection;
+import com.tintin.theplyushkin.models.CollectionItem;
 import com.tintin.theplyushkin.models.security.Person;
 import com.tintin.theplyushkin.repositories.CollectionsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,5 +31,14 @@ public class CollectionsService {
 
     public byte[] getImageByCollectionId(int id) {
         return findById(id).getImage();
+    }
+
+    public List<CollectionItem> getItemsOfCollection(int id) {
+        return findById(id).getItemsOfCollection();
+    }
+
+    @Transactional
+    public void save(Collection collection) {
+        collectionsRepository.save(collection);
     }
 }

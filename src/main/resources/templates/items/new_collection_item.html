@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <!-- Обязательные метатеги -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Плюшкин</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+            crossorigin="anonymous"></script>
+
+    <link rel="shortcut icon" href="/images/icon.jpg"> <!-- иконка сайта -->
+    <link rel="stylesheet" href="/css/style_for_my_collection_add.css">
+</head>
+
+<body>
+<!----------------------СЕКЦИЯ Добавление коллекции------------------------------>
+<section>
+    <div class="container-m">
+        <div class="maket-moi-kollekcii">
+            <div class="flex-wrapper-one">
+                <p class="pljushkin">Плюшкин</p>
+                <p class="moi-kollekcii">Мои коллекции</p>
+                <p class="glavnaja-stranica">Главная страница</p>
+                <p class="lichnyj-kabinet">Личный кабинет</p>
+            </div>
+
+            <div class="container">
+                <h2>Новый элемент коллекции</h2>
+                <form class="form-horizontal" th:method="PUSH"
+                      th:action="@{/items/new/{id}/features(id=${collectionId})}" th:object="${collectionItem}">
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="name">Название элемента:</label>
+                        <div class="col-sm-10">
+                            <input type="text" th:field="*{name}" class="form-control" id="name"
+                                   placeholder="Введите название элемента" name="name">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="control-label col-sm-2" for="description">Описание элемента:</label>
+                        <div class="col-sm-10">
+                            <input type="text" th:field="*{description}" class="form-control" id="description"
+                                   placeholder="Введите описание элемента" name="description">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-sm-offset-2 col-sm-10">
+                            <button type="submit" class="btn btn-default">Заполнить характеристики</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>

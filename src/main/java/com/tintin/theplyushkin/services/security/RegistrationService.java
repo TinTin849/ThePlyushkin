@@ -19,7 +19,10 @@ public class RegistrationService {
     private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public RegistrationService(AccessLevelRepository accessLevelRepository, VisibilityLevelRepository visibilityLevelRepository, PeopleRepository peopleRepository, PasswordEncoder passwordEncoder) {
+    public RegistrationService(AccessLevelRepository accessLevelRepository,
+                               VisibilityLevelRepository visibilityLevelRepository,
+                               PeopleRepository peopleRepository,
+                               PasswordEncoder passwordEncoder) {
         this.accessLevelRepository = accessLevelRepository;
         this.visibilityLevelRepository = visibilityLevelRepository;
         this.peopleRepository = peopleRepository;

@@ -21,9 +21,9 @@ public class FeatureOfItem {
     @JoinColumn(name = "item", referencedColumnName = "id")
     private CollectionItem collectionItem;
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "feature", referencedColumnName = "id")
-    private Feature itemFeature;
+    private Feature feature;
 
     @Column(name = "data")
     private String data;
