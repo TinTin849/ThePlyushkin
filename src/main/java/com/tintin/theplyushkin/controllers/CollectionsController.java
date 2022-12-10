@@ -85,6 +85,8 @@ public class CollectionsController {
         PersonDetails userDetails = (PersonDetails) authentication.getPrincipal();
         Person creator = userDetails.getPerson();
 
+        collection.setId(null);
+
         collection.setTypeOfCollection(typesOfCollectionService.findById(collection.getTypeOfCollection().getId()));
         collection.setCreator(creator);
         collection.setVisibility(visibilityLevelService.findByName(DEFAULT_VISIBILITY_OF_COLLECTION));

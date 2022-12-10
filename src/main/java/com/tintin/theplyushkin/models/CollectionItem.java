@@ -18,7 +18,7 @@ public class CollectionItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int id;
+    private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "collection", referencedColumnName = "id")
@@ -41,4 +41,13 @@ public class CollectionItem {
     @OneToMany(mappedBy = "collectionItem")
     @Cascade(org.hibernate.annotations.CascadeType.REMOVE)
     private List<FeatureOfItem> featuresOfCollectionItem;
+
+    @Override
+    public String toString() {
+        return "CollectionItem{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }

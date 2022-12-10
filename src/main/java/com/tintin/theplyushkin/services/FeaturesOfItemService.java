@@ -18,6 +18,6 @@ public class FeaturesOfItemService {
 
     @Transactional
     public void save(FeatureOfItem featureOfItem) {
-        save(featureOfItem);
+        featuresOfItemRepository.save(featureOfItem);
     }
 }

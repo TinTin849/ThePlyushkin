@@ -33,7 +33,7 @@
             <div class="container">
                 <h2>Новый элемент коллекции</h2>
                 <form class="form-horizontal" th:method="PUSH"
-                      th:action="@{/items/new/{id}/features(id=${collectionId})}" th:object="${collectionItem}">
+                      th:action="@{/items/new/{number}/features(number=${collectionId})}" th:object="${collectionItem}">
                     <div class="form-group">
                         <label class="control-label col-sm-2" for="name">Название элемента:</label>
                         <div class="col-sm-10">

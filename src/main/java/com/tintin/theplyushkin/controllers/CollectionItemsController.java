@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 @Controller
 @RequestMapping("/items")
@@ -47,7 +48,8 @@ public class CollectionItemsController {
     }
 
     @RequestMapping("/{id}")
-    public String collectionItem(@PathVariable("id") int id, Model model) {
+    public String collectionItem(Model model,
+                                 @PathVariable("id") int id) {
         //todo access system to collections by user
         //Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         //PersonDetails userDetails = (PersonDetails) authentication.getPrincipal();
@@ -78,6 +80,8 @@ public class CollectionItemsController {
                                   @PathVariable("id") int collectionId) {
         Collection currentCollection = collectionsService.findById(collectionId);
 
+        collectionItem.setId(null);
+
         collectionItem.setCollection(currentCollection);
         collectionItem.setVisibility(visibilityLevelService.findByName(DEFAULT_VISIBILITY_OF_ITEM));
         collectionItem = collectionItemsService.save(collectionItem);
@@ -99,7 +103,7 @@ public class CollectionItemsController {
         CollectionItem currentCollectionItem = collectionItemsService.findById(collectionItem);
 
         for (Map.Entry<String, String> entry : allFeatures.entrySet()) {
-            if (!entry.getValue().isBlank()) {
+            if (!entry.getValue().isBlank() && entry.getKey().matches("\\d+")) {
                 int featureId = Integer.parseInt(entry.getKey());
                 Feature feature = featureService.findById(featureId);
 
