@@ -80,7 +80,9 @@ public class CollectionItemsController {
 
         collectionItem.setCollection(currentCollection);
         collectionItem.setVisibility(visibilityLevelService.findByName(DEFAULT_VISIBILITY_OF_ITEM));
-        collectionItemsService.save(collectionItem);
+        collectionItem = collectionItemsService.save(collectionItem);
+
+        model.addAttribute("collectionItem", collectionItem);
 
         TypeOfCollection currentTypeOfCollection = currentCollection.getTypeOfCollection();
         List<FeatureOfCollectionType> featuresOfCollectionType = currentTypeOfCollection.getFeaturesOfCollectionType();
@@ -89,12 +91,12 @@ public class CollectionItemsController {
         return "items/new_collection_item_features";
     }
 
-    @RequestMapping("/add")
+    @RequestMapping("/add/{id}")
     public String addItem(Model model,
                           @ModelAttribute("newCollection") Collection collection,
-                          @ModelAttribute("collectionItem") CollectionItem collectionItem,
+                          @PathVariable("id") int collectionItem,
                           @RequestParam Map<String, String> allFeatures) {
-        CollectionItem currentCollectionItem = collectionItemsService.findById(collectionItem.getId());
+        CollectionItem currentCollectionItem = collectionItemsService.findById(collectionItem);
 
         for (Map.Entry<String, String> entry : allFeatures.entrySet()) {
             if (!entry.getValue().isBlank()) {

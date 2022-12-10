@@ -32,7 +32,7 @@
 
             <div class="container">
                 <h2>Horizontal form</h2>
-                <form class="form-horizontal" th:method="PUSH" th:action="@{/items/add}">
+                <form class="form-horizontal" th:method="PUSH" th:action="@{/items/add/{id}(id=${collectionItem.getId()})}">
                     <div class="form-group" th:each="feature : ${featuresOfCollectionType}">
                         <label class="control-label col-sm-2" th:for="${feature.itemFeature.name}"
                                th:text="${feature.itemFeature.name}">Text</label>

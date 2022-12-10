@@ -22,7 +22,7 @@ public class CollectionItemsService {
     }
 
     @Transactional
-    public void save(CollectionItem collectionItem) {
-        collectionItemsRepository.save(collectionItem);
+    public CollectionItem save(CollectionItem collectionItem) {
+        return collectionItemsRepository.save(collectionItem);
     }
 }
