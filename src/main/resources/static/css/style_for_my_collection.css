@@ -3,6 +3,7 @@
   padding: 0 0 0;
   display: flex;
   flex-direction: column;
+  padding-bottom: 70px;
 }
 .flex-wrapper-one {
   background-size: 100% 100%;
@@ -52,6 +53,7 @@
   line-height: var(--lexend-tera-32-black-line-height);
 }
 .net-kollekcii-sozdajte {
+  padding-top: 30px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -80,7 +82,19 @@
   font-weight: var(--lexend-tera-30-black-weight);
   line-height: var(--lexend-tera-30-black-line-height);
 }
-
+.name-of-collection {
+  font-family: "Lemon";
+  font-size: 32px;
+  line-height: normal;
+  text-align: center;
+  padding-bottom: 50px;
+}
+.name-of-element {
+  font-family: "Lemon";
+  font-size: 24px;
+  line-height: normal;
+  text-align: center;
+}
 /* This is the project stylesheet */
 /* Ниже идут шрифты и цвета */
 

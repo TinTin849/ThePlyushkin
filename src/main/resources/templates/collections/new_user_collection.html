@@ -24,14 +24,13 @@
     <div class="container-m">
         <div class="maket-moi-kollekcii">
             <div class="flex-wrapper-one">
-                <p class="pljushkin">Плюшкин</p>
+                <p class="pljushkin"><a href="../collections" style="color:rgba(144, 244, 254, 1); text-decoration:none;">Плюшкин</a></p>
                 <p class="moi-kollekcii">Мои коллекции</p>
-                <p class="glavnaja-stranica">Главная страница</p>
+                <p class="glavnaja-stranica"><a href="../collections" style="color:#ffffff; text-decoration:none;">Главная страница</a></p>
                 <p class="lichnyj-kabinet">Личный кабинет</p>
             </div>
 
             <div class="container">
-                <h2>Horizontal form</h2>
                 <form class="form-horizontal" th:method="PUSH" th:action="@{/collections/add}" th:object="${collection}">
                     <div class="form-group">
                         <label for="sel1">Выберите тип коллекции:</label>
@@ -67,19 +66,27 @@
 <!--                    <div class="preview">-->
 <!--                        <p>No files currently selected for upload</p>-->
 <!--                    </div>-->
+                    <br>
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
-                            <button type="submit" class="btn btn-default">Создать</button>
+                            <button type="submit" class="btn btn-default">
+                                <div class="net-kollekcii-sozdajte">
+                                    <div class="knopka">
+                                        <p class="sozdat-kollekciju">Создать коллекцию</p>
+                                    </div>
+                                </div>
+                            </button>
                         </div>
                     </div>
                 </form>
             </div>
 
-            <div class="net-kollekcii-sozdajte">
-                <div class="knopka">
-                    <p class="sozdat-kollekciju">Создать коллекцию</p>
-                </div>
-            </div>
+<!---            <div class="net-kollekcii-sozdajte"> -->
+<!---                <div class="knopka"> -->
+<!---                    <p class="sozdat-kollekciju">Создать коллекцию</p> -->
+<!---                </div> -->
+<!---            </div> -->
+
         </div>
     </div>
 </section>

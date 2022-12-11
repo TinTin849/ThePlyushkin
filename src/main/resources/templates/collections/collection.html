@@ -24,35 +24,58 @@
     <div class="container-m">
         <div class="maket-moi-kollekcii">
             <div class="flex-wrapper-one">
-                <p class="pljushkin"><a href="../collections">Плюшкин</a></p>
-                <p class="glavnaja-stranica"><a href="../collections">Главная страница</a></p>
+                <p class="pljushkin"><a href="/collections" style="color:rgba(144, 244, 254, 1); text-decoration:none;">Плюшкин</a></p>
+                <p class="moi-kollekcii">Мои коллекции</p>
+                <p class="glavnaja-stranica"><a href="/collections" style="color:#ffffff; text-decoration:none;">Главная страница</a></p>
                 <p class="lichnyj-kabinet">Личный кабинет</p>
             </div>
 
             <div class="container">
                 <h2 th:text="${collection.name}">Collection name</h2>
                 <p th:text="${collection.description}">About collection info</p>
-                <div class="row">
-                    <div class="col-md-4" th:each="item : ${itemsOfCollection}">
-                        <div class="thumbnail">
-                            <a th:href="@{/items/{id}(id=${item.getId()})}" target="_blank">
-                                <img th:src="@{/images/items/{id}(id=${item.getId()})}"
-                                     alt="Lights" style="width:100%">
+                <div class="row row-cols-1 row-cols-md-3 g-4">
+                    <div class="col" th:each="item : ${itemsOfCollection}">
+                        <a th:href="@{/items/{id}(id=${item.getId()})}" target="_blank">
+                        <div class="card h-100">
+                            <img th:src="@{/images/items/{id}(id=${item.getId()})}" class="card-img-top" alt="...">
+                            <div class="card-body">
                                 <div class="caption">
-                                    <p th:text="${item.getName()}">text</p>
+                            <h5 class="card-title"><a th:text="${item.getName()}" style="color:#000000; text-decoration:none;">text</a></h5>
                                 </div>
-                            </a>
+                            </div>
                         </div>
+                        </a>
                     </div>
-                </div>
-            </div>
+                  </div>
+
+  <!--                 <div class="row"> -->
+    <!--                   <div class="col-md-4" th:each="item : ${itemsOfCollection}"> -->
+ <!--                          <div class="thumbnail"> -->
+  <!--                               <a th:href="@{/items/{id}(id=${item.getId()})}" target="_blank"> -->
+   <!--                                <div class="card" style="width: 18rem;"> -->
+  <!--                                     <img th:src="@{/images/items/{id}(id=${item.getId()})}" class="card-img-top" alt="..."> -->
+  <!--                                     <div class="card-body"> -->
+  <!--                                         <div class="caption"> -->
+    <!--                                     <h5 class="card-title"><a th:text="${item.getName()}" style="color:#000000; text-decoration:none;">text</a></h5> -->
+   <!--                                        </div> -->
+   <!--                                    </div> -->
+   <!--                                  </div> -->
+   <!--                              </a> -->
+<!--  *****************************************************************************************************************************************************************  -->
+ <!--                           <a th:href="@{/items/{id}(id=${item.getId()})}" target="_blank"> -->
+ <!--                               <img th:src="@{/images/items/{id}(id=${item.getId()})}" -->
+ <!--                                    alt="Lights" style="width:100%"> -->
+ <!--                               <div class="caption"> -->
+ <!--                                   <p class="name-of-collection"><a th:text="${item.getName()}" style="color:#000000; text-decoration:none;">text</a></p> -->
+ <!--                               </div> -->
+ <!--                           </a> -->
 
             <div class="net-kollekcii-sozdajte">
                 <p class="zdes-poka-pusto-sozdajte-pervuju-kollek">
                     Не забывайте пополнять коллекцию
                 </p>
                 <div class="knopka"><p class="sozdat">
-                    <a th:href="@{/items/new/{id}(id=${collection.getId()})}">Добавить элемент</a>
+                    <a th:href="@{/items/new/{id}(id=${collection.getId()})}" style="color:#ffffff; text-decoration:none;">Добавить элемент</a>
                 </p></div>
             </div>
         </div>
