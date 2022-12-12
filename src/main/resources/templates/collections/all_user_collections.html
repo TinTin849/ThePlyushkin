@@ -24,8 +24,9 @@
     <div class="container-m">
         <div class="maket-moi-kollekcii">
             <div class="flex-wrapper-one">
-                <p class="pljushkin"><a href="../collections">Плюшкин</a></p>
-                <p class="glavnaja-stranica"><a href="../collections">Главная страница</a></p>
+                <p class="pljushkin"><a href="../collections" style="color:rgba(144, 244, 254, 1); text-decoration:none;">Плюшкин</a></p>
+                <p class="moi-kollekcii">Мои коллекции</p>
+                <p class="glavnaja-stranica"><a href="../collections" style="color:#ffffff; text-decoration:none;">Главная страница</a></p>
                 <p class="lichnyj-kabinet">Личный кабинет</p>
             </div>
 
@@ -37,7 +38,7 @@
                                 <img th:src="@{../images/collections/{id}(id=${collection.getId()})}"
                                      alt="Lights" style="width:100%">
                                 <div class="caption">
-                                    <p th:text="${collection.getName()}">text</p>
+                                    <p class="name-of-collection"><a th:text="${collection.getName()}" style="color:#000000; text-decoration:none;">text</a></p>
                                 </div>
                             </a>
                         </div>
@@ -45,10 +46,12 @@
                 </div>
             </div>
 
-            <p class="zdes-poka-pusto-sozdajte-pervuju-kollek">
-                Добавить новую коллекцию!
-            </p>
-            <div class="knopka"><p class="sozdat"><a href="../collections/new">Создать</a></p></div>
+            <div class="net-kollekcii-sozdajte">
+                <p class="zdes-poka-pusto-sozdajte-pervuju-kollek">
+                    Добавить новую коллекцию!
+                </p>
+                <div class="knopka"><p class="sozdat"><a href="../collections/new" style="color:#ffffff; text-decoration:none;">Создать</a></p></div>
+              </div>
 
         </div>
     </div>
