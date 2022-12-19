@@ -25,4 +25,9 @@ public class CollectionItemsService {
     public CollectionItem save(CollectionItem collectionItem) {
         return collectionItemsRepository.save(collectionItem);
     }
+
+    @Transactional
+    public void delete(int id) {
+        collectionItemsRepository.deleteById(id);
+    }
 }
