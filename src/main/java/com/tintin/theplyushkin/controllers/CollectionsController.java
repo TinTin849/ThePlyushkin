@@ -13,6 +13,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -91,7 +92,16 @@ public class CollectionsController {
         collection.setCreator(creator);
         collection.setVisibility(visibilityLevelService.findByName(DEFAULT_VISIBILITY_OF_COLLECTION));
 
-        collectionsService.save(collection);
+        Collection savedCollection = collectionsService.save(collection);
+
+        model.addAttribute("collectionId", savedCollection.getId());
+
+        return "collections/new_user_collection_image";
+    }
+
+    @DeleteMapping("/{id}")
+    public String deleteCollection(@PathVariable("id") int id) {
+        collectionsService.deleteById(id);
 
         return "redirect:/collections/my";
     }

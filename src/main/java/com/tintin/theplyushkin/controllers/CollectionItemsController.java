@@ -14,10 +14,7 @@ import com.tintin.theplyushkin.services.security.VisibilityLevelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Map;
@@ -116,7 +113,16 @@ public class CollectionItemsController {
             }
         }
 
-        int collectionId = currentCollectionItem.getCollection().getId();
+        model.addAttribute("itemId", collectionItem);
+
+        return "items/new_collection_item_image";
+    }
+
+    @DeleteMapping("/{id}")
+    public String deleteItem(@PathVariable("id") int id) {
+        int collectionId = collectionItemsService.findById(id).getCollection().getId();
+        collectionItemsService.delete(id);
+
         return "redirect:/collections/my/" + collectionId;
     }
 }

@@ -38,7 +38,12 @@ public class CollectionsService {
     }
 
     @Transactional
-    public void save(Collection collection) {
-        collectionsRepository.save(collection);
+    public Collection save(Collection collection) {
+        return collectionsRepository.save(collection);
+    }
+
+    @Transactional
+    public void deleteById(int id) {
+        collectionsRepository.deleteById(id);
     }
 }

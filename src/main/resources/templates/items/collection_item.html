@@ -31,8 +31,8 @@
             </div>
 
             <div class="container">
-                <div class="row-">
-                    <div class="col-md-auto"> <!--   md-auto указывает на автоматическую ширину    -->
+                <div class="row">
+                    <div class="col-md-6 float-md-end mb-3 ms-md-3"> <!--   md-auto указывает на автоматическую ширину    -->
                         <div class="card mb-3">
                             <img th:src="@{../images/items/{id}(id=${currentItem.getId()})}" class="card-img-top">
                             <div class="card-body">
@@ -48,9 +48,14 @@
                             </div>
                             </div>
                         </div>
+                        <form th:action="@{/items/{id}(id=${currentItem.getId()})}" th:method="DELETE">
+                            <input type="submit" class="btn btn-danger" value="Удалить"/>
+                        </form>
                     </div>
                 </div>
             </div>
+
+
         </div>
     </div>
 </section>
