@@ -7,24 +7,30 @@ import lombok.Setter;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "collection_item_features")
+@Table(name = "item_features")
 @NoArgsConstructor
 @Getter
 @Setter
-public class FeatureOfItem {
+public class ItemFeature {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "item", referencedColumnName = "id")
-    private CollectionItem collectionItem;
+    @JoinColumn(name = "item_id", referencedColumnName = "id")
+    private Item item;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "feature", referencedColumnName = "id")
+    @JoinColumn(name = "feature_id", referencedColumnName = "id")
     private Feature feature;
 
     @Column(name = "data")
     private String data;
+
+    public ItemFeature(Item item, Feature feature, String data) {
+        this.item = item;
+        this.feature = feature;
+        this.data = data;
+    }
 }

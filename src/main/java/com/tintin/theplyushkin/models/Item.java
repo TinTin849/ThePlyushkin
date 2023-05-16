@@ -1,6 +1,6 @@
 package com.tintin.theplyushkin.models;
 
-import com.tintin.theplyushkin.models.security.VisibilityLevel;
+import com.tintin.theplyushkin.models.util.VisibilityLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -10,18 +10,18 @@ import javax.persistence.*;
 import java.util.List;
 
 @Entity
-@Table(name = "collection_items")
+@Table(name = "items")
 @NoArgsConstructor
 @Getter
 @Setter
-public class CollectionItem {
+public class Item {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "collection", referencedColumnName = "id")
+    @JoinColumn(name = "collection_id", referencedColumnName = "id")
     private Collection collection;
 
     @Column(name = "name")
@@ -30,17 +30,23 @@ public class CollectionItem {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "img")
-    @Basic(fetch = FetchType.LAZY)
-    private byte[] image;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "visibility", referencedColumnName = "id")
+    @Enumerated(EnumType.STRING)
+    @Column(name = "visibility")
     private VisibilityLevel visibility;
 
-    @OneToMany(mappedBy = "collectionItem")
+    @Column(name = "likes")
+    private Integer likes;
+
+    @Column(name = "is_active")
+    private Boolean isActive;
+
+    @OneToMany(mappedBy = "item")
     @Cascade(org.hibernate.annotations.CascadeType.REMOVE)
-    private List<FeatureOfItem> featuresOfCollectionItem;
+    private List<ItemFeature> featuresOfItem;
+
+    @OneToMany(mappedBy = "item")
+    @Cascade(org.hibernate.annotations.CascadeType.REMOVE)
+    private List<ItemImage> itemImages;
 
     @Override
     public String toString() {

@@ -11,7 +11,7 @@
         <div class="row">
             <div class="col-md-8 mx-auto">
                 <h2>Загрузка изображения коллекции</h2>
-<!--                <p th:text="${message}" th:if="${message}" class="alert alert-primary"></p>-->
+                <!--                <p th:text="${message}" th:if="${message}" class="alert alert-primary"></p>-->
                 <form method="post"
                       th:action="@{/images/collections/{id}/upload(id=${collectionId})}"
                       enctype="multipart/form-data">

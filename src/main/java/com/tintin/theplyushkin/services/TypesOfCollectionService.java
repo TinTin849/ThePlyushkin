@@ -1,7 +1,7 @@
 package com.tintin.theplyushkin.services;
 
-import com.tintin.theplyushkin.models.TypeOfCollection;
-import com.tintin.theplyushkin.repositories.TypesOfCollectionRepository;
+import com.tintin.theplyushkin.models.CollectionType;
+import com.tintin.theplyushkin.repositories.CollectionTypesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -11,18 +11,18 @@ import java.util.List;
 @Service
 @Transactional(readOnly = true)
 public class TypesOfCollectionService {
-    private final TypesOfCollectionRepository typesOfCollectionRepository;
+    private final CollectionTypesRepository collectionTypesRepository;
 
     @Autowired
-    public TypesOfCollectionService(TypesOfCollectionRepository typesOfCollectionRepository) {
-        this.typesOfCollectionRepository = typesOfCollectionRepository;
+    public TypesOfCollectionService(CollectionTypesRepository collectionTypesRepository) {
+        this.collectionTypesRepository = collectionTypesRepository;
     }
 
-    public List<TypeOfCollection> findAll() {
-        return typesOfCollectionRepository.findAll();
+    public List<CollectionType> findAll() {
+        return collectionTypesRepository.findAll();
     }
 
-    public TypeOfCollection findById(int id) {
-        return typesOfCollectionRepository.findById(id).get();
+    public CollectionType findById(int id) {
+        return collectionTypesRepository.findById(id).get();
     }
 }

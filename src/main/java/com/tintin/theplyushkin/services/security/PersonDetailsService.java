@@ -1,7 +1,7 @@
 package com.tintin.theplyushkin.services.security;
 
-import com.tintin.theplyushkin.models.security.Person;
-import com.tintin.theplyushkin.repositories.security.PeopleRepository;
+import com.tintin.theplyushkin.models.User;
+import com.tintin.theplyushkin.repositories.UsersRepository;
 import com.tintin.theplyushkin.security.PersonDetails;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,18 +14,16 @@ import java.util.Optional;
 @Service
 public class PersonDetailsService implements UserDetailsService {
 
-    private final PeopleRepository peopleRepository;
+    private final UsersRepository usersRepository;
 
     @Autowired
-    public PersonDetailsService(PeopleRepository peopleRepository) {
-        this.peopleRepository = peopleRepository;
+    public PersonDetailsService(UsersRepository usersRepository) {
+        this.usersRepository = usersRepository;
     }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-
-        Optional<Person> person = peopleRepository.findByUsername(username);
-
+        Optional<User> person = usersRepository.findByUsername(username);
         if (person.isEmpty()) {
             throw new UsernameNotFoundException("User not found!");
         }

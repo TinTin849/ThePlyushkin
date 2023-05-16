@@ -9,5 +9,4 @@ public class ThePlyushkinApplication {
     public static void main(String[] args) {
         SpringApplication.run(ThePlyushkinApplication.class, args);
     }
-
 }

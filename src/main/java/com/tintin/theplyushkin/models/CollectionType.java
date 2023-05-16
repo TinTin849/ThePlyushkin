@@ -1,7 +1,6 @@
 package com.tintin.theplyushkin.models;
 
-import com.tintin.theplyushkin.models.security.Person;
-import com.tintin.theplyushkin.models.security.VisibilityLevel;
+import com.tintin.theplyushkin.models.util.VisibilityLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -15,24 +14,24 @@ import java.util.List;
 @NoArgsConstructor
 @Getter
 @Setter
-public class TypeOfCollection {
+public class CollectionType {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private int id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "creator", referencedColumnName = "id")
-    private Person creator;
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private User user;
 
     @Column(name = "name")
     private String name;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "visibility", referencedColumnName = "id")
+    @Enumerated(EnumType.STRING)
+    @Column(name = "visibility")
     private VisibilityLevel visibility;
 
     @OneToMany(mappedBy = "collectionType")
     @Cascade(org.hibernate.annotations.CascadeType.REMOVE)
-    private List<FeatureOfCollectionType> featuresOfCollectionType;
+    private List<Feature> featuresOfCollectionType;
 }

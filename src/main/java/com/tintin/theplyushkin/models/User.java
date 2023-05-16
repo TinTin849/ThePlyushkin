@@ -1,27 +1,21 @@
-package com.tintin.theplyushkin.models.security;
+package com.tintin.theplyushkin.models;
 
+import com.tintin.theplyushkin.models.util.AccessLevel;
+import com.tintin.theplyushkin.models.util.VisibilityLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "people")
+@Table(name = "users")
 @NoArgsConstructor
 @Getter
 @Setter
-public class Person {
+public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
@@ -41,15 +35,21 @@ public class Person {
     @Column(name = "password")
     private String password;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "access", referencedColumnName = "id")
+    @Enumerated(EnumType.STRING)
+    @Column(name = "access")
     private AccessLevel role;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "visibility", referencedColumnName = "id")
+    @Enumerated(EnumType.STRING)
+    @Column(name = "visibility")
     private VisibilityLevel visibility;
 
-    public Person(String username, String email, String phone) {
+    @Column(name = "is_active")
+    private Boolean isActive = true;
+
+    @Column(name = "img_url")
+    private String imgUrl;
+
+    public User(String username, String email, String phone) {
         this.username = username;
         this.email = email;
         this.phone = phone;

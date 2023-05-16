@@ -22,19 +22,22 @@
 <!----------------------СЕКЦИЯ Добавление коллекции------------------------------>
 <section>
     <div class="container-m">
-        <div class="maket-moi-kollekcii">
+        <div class="layout-my-collections">
             <div class="flex-wrapper-one">
-                <p class="pljushkin"><a href="../collections" style="color:rgba(144, 244, 254, 1); text-decoration:none;">Плюшкин</a></p>
-                <p class="moi-kollekcii">Мои коллекции</p>
-                <p class="glavnaja-stranica"><a href="../collections" style="color:#ffffff; text-decoration:none;">Главная страница</a></p>
-                <p class="lichnyj-kabinet">Личный кабинет</p>
+                <p class="pljushkin"><a href="../collections"
+                                        style="color:rgba(144, 244, 254, 1); text-decoration:none;">Плюшкин</a></p>
+                <p class="my-collections">Мои коллекции</p>
+                <p class="main-page"><a href="../collections" style="color:#ffffff; text-decoration:none;">Главная
+                    страница</a></p>
+                <p class="personal-account">Личный кабинет</p>
             </div>
 
             <div class="container">
-                <form class="form-horizontal" th:method="PUSH" th:action="@{/collections/add}" th:object="${collection}">
+                <form class="form-horizontal" th:method="POST" th:action="@{/collections/add}"
+                      th:object="${collection}" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="sel1">Выберите тип коллекции:</label>
-                        <select class="form-control" id="sel1" th:field="*{typeOfCollection.id}">
+                        <select class="form-control" id="sel1" th:field="*{collectionType.id}">
                             <option th:each="p : ${typesOfCollection}"
                                     th:value="${p.id}"
                                     th:text="${p.getName()}">
@@ -56,23 +59,18 @@
                                    placeholder="Введите описание коллекции" name="description">
                         </div>
                     </div>
-<!--                    <div class="form-group">-->
-<!--                        <label class="control-label col-sm-2" for="col-img">Обложка коллекции:</label>-->
-<!--                        <div class="col-sm-10">-->
-<!--                            <input type="file" th:field="*{image}" accept=".jpg, .jpeg, .png" class="form-control" id="col-img"-->
-<!--                                   name="col-img">-->
-<!--                        </div>-->
-<!--                    </div>-->
-<!--                    <div class="preview">-->
-<!--                        <p>No files currently selected for upload</p>-->
-<!--                    </div>-->
+                    <br>
+                    <div>
+                        <label>Photo: </label>
+                        <input type="file" name="image" accept="image/png, image/jpeg"/>
+                    </div>
                     <br>
                     <div class="form-group">
                         <div class="col-sm-offset-2 col-sm-10">
                             <button type="submit" class="btn btn-default">
-                                <div class="net-kollekcii-sozdajte">
-                                    <div class="knopka">
-                                        <p class="sozdat-kollekciju">Создать коллекцию</p>
+                                <div class="no-collection">
+                                    <div class="my-button">
+                                        <p class="create-collection">Создать коллекцию</p>
                                     </div>
                                 </div>
                             </button>
@@ -80,88 +78,8 @@
                     </div>
                 </form>
             </div>
-
-<!---            <div class="net-kollekcii-sozdajte"> -->
-<!---                <div class="knopka"> -->
-<!---                    <p class="sozdat-kollekciju">Создать коллекцию</p> -->
-<!---                </div> -->
-<!---            </div> -->
-
         </div>
     </div>
 </section>
-
-<!--<script>-->
-<!--    const input = document.querySelector('input');-->
-<!--    const preview = document.querySelector('.preview');-->
-
-<!--    input.style.opacity = 0;-->
-
-<!--    input.addEventListener('change', updateImageDisplay);-->
-
-<!--    function updateImageDisplay() {-->
-<!--        while(preview.firstChild) {-->
-<!--            preview.removeChild(preview.firstChild);-->
-<!--        }-->
-
-<!--        const curFiles = input.files;-->
-<!--        if(curFiles.length === 0) {-->
-<!--            const para = document.createElement('p');-->
-<!--            para.textContent = 'No files currently selected for upload';-->
-<!--            preview.appendChild(para);-->
-<!--        } else {-->
-<!--            const list = document.createElement('ol');-->
-<!--            preview.appendChild(list);-->
-
-<!--            for(const file of curFiles) {-->
-<!--                const listItem = document.createElement('li');-->
-<!--                const para = document.createElement('p');-->
-
-<!--                if(validFileType(file)) {-->
-<!--                    para.textContent = `File name ${file.name}, file size ${returnFileSize(file.size)}.`;-->
-<!--                    const image = document.createElement('img');-->
-<!--                    image.src = URL.createObjectURL(file);-->
-
-<!--                    listItem.appendChild(image);-->
-<!--                    listItem.appendChild(para);-->
-<!--                } else {-->
-<!--                    para.textContent = `File name ${file.name}: Not a valid file type. Update your selection.`;-->
-<!--                    listItem.appendChild(para);-->
-<!--                }-->
-
-<!--                list.appendChild(listItem);-->
-<!--            }-->
-<!--        }-->
-<!--    }-->
-
-<!--    // https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Image_types-->
-<!--    const fileTypes = [-->
-<!--        'image/apng',-->
-<!--        'image/bmp',-->
-<!--        'image/gif',-->
-<!--        'image/jpeg',-->
-<!--        'image/pjpeg',-->
-<!--        'image/png',-->
-<!--        'image/svg+xml',-->
-<!--        'image/tiff',-->
-<!--        'image/webp',-->
-<!--        `image/x-icon`-->
-<!--    ];-->
-
-<!--    function validFileType(file) {-->
-<!--        return fileTypes.includes(file.type);-->
-<!--    }-->
-
-<!--    function returnFileSize(number) {-->
-<!--        if(number < 1024) {-->
-<!--            return number + 'bytes';-->
-<!--        } else if(number > 1024 && number < 1048576) {-->
-<!--            return (number/1024).toFixed(1) + 'KB';-->
-<!--        } else if(number > 1048576) {-->
-<!--            return (number/1048576).toFixed(1) + 'MB';-->
-<!--        }-->
-<!--    }-->
-<!--</script>-->
-
 </body>
 </html>

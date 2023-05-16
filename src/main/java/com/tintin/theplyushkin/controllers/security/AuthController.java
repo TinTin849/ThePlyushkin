@@ -1,6 +1,6 @@
 package com.tintin.theplyushkin.controllers.security;
 
-import com.tintin.theplyushkin.models.security.Person;
+import com.tintin.theplyushkin.models.User;
 import com.tintin.theplyushkin.services.security.RegistrationService;
 import com.tintin.theplyushkin.util.PersonValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,20 +32,19 @@ public class AuthController {
     }
 
     @GetMapping("/registration")
-    public String registrationPage(@ModelAttribute("person") Person person) {
+    public String registrationPage(@ModelAttribute("user") User user) {
         return "auth/registration";
     }
 
     @PostMapping("/registration")
-    public String performRegistration(@ModelAttribute("person") @Valid Person person,
+    public String performRegistration(@ModelAttribute("user") @Valid User user,
                                       BindingResult bindingResult) {
-        personValidator.validate(person, bindingResult);
-
+        personValidator.validate(user, bindingResult);
         if (bindingResult.hasErrors()) {
             return "/auth/registration";
+        } else {
+            registrationService.register(user);
         }
-
-        registrationService.register(person);
 
         return "redirect:/auth/login";
     }

@@ -22,14 +22,14 @@
 <!----------------------СЕКЦИЯ Мои коллекции------------------------------>
 <section>
     <div class="container-m">
-        <div class="maket-moi-kollekcii">
+        <div class="layout-my-collection">
             <div class="flex-wrapper-one">
                 <p class="pljushkin"><a href="/collections" style="color:rgba(144, 244, 254, 1); text-decoration:none;">Плюшкин</a>
                 </p>
-                <p class="moi-kollekcii">Мои коллекции</p>
-                <p class="glavnaja-stranica"><a href="/collections" style="color:#ffffff; text-decoration:none;">Главная
+                <p class="my-collections">Мои коллекции</p>
+                <p class="main-page"><a href="/collections" style="color:#ffffff; text-decoration:none;">Главная
                     страница</a></p>
-                <p class="lichnyj-kabinet">Личный кабинет</p>
+                <p class="personal-account">Личный кабинет</p>
             </div>
 
             <div class="container">
@@ -42,8 +42,10 @@
                                 <img th:src="@{/images/items/{id}(id=${item.getId()})}" class="card-img-top" alt="...">
                                 <div class="card-body">
                                     <div class="caption">
-                                        <h5 class="card-title"><a th:text="${item.getName()}"
-                                                                  style="color:#000000; text-decoration:none;">text</a>
+                                        <h5 class="card-title">
+                                            <a th:text="${item.getName()}" style="color:#000000; text-decoration:none;">
+                                                text
+                                            </a>
                                         </h5>
                                     </div>
                                 </div>
@@ -79,11 +81,11 @@
                     <input type="submit" class="btn btn-danger" value="Удалить коллекцию"/>
                 </form>
 
-                <div class="net-kollekcii-sozdajte">
-                    <p class="zdes-poka-pusto-sozdajte-pervuju-kollek">
+                <div class="no-collection">
+                    <p class="empty-here-create-new">
                         Не забывайте пополнять коллекцию
                     </p>
-                    <div class="knopka"><p class="sozdat">
+                    <div class="my-button"><p class="create-new">
                         <a th:href="@{/items/new/{id}(id=${collection.getId()})}"
                            style="color:#ffffff; text-decoration:none;">Добавить элемент</a>
                     </p></div>

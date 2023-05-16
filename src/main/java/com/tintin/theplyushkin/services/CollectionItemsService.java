@@ -1,8 +1,7 @@
 package com.tintin.theplyushkin.services;
 
-import com.tintin.theplyushkin.models.CollectionItem;
-import com.tintin.theplyushkin.repositories.CollectionItemsRepository;
-import com.tintin.theplyushkin.repositories.CollectionsRepository;
+import com.tintin.theplyushkin.models.Item;
+import com.tintin.theplyushkin.repositories.ItemsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -10,24 +9,26 @@ import org.springframework.transaction.annotation.Transactional;
 @Service
 @Transactional(readOnly = true)
 public class CollectionItemsService {
-    private final CollectionItemsRepository collectionItemsRepository;
+    private final ItemsRepository itemsRepository;
 
     @Autowired
-    public CollectionItemsService(CollectionItemsRepository collectionItemsRepository) {
-        this.collectionItemsRepository = collectionItemsRepository;
+    public CollectionItemsService(ItemsRepository itemsRepository) {
+        this.itemsRepository = itemsRepository;
     }
 
-    public CollectionItem findById(int id) {
-        return collectionItemsRepository.findById(id).get();
+    public Item findById(int id) {
+        return itemsRepository.findById(id).get();
     }
 
     @Transactional
-    public CollectionItem save(CollectionItem collectionItem) {
-        return collectionItemsRepository.save(collectionItem);
+    public Item save(Item item) {
+        return itemsRepository.save(item);
     }
+
+
 
     @Transactional
     public void delete(int id) {
-        collectionItemsRepository.deleteById(id);
+        itemsRepository.deleteById(id);
     }
 }

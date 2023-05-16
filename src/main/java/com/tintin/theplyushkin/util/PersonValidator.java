@@ -1,6 +1,6 @@
 package com.tintin.theplyushkin.util;
 
-import com.tintin.theplyushkin.models.security.Person;
+import com.tintin.theplyushkin.models.User;
 import com.tintin.theplyushkin.services.security.PeopleService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -18,15 +18,15 @@ public class PersonValidator implements Validator {
 
     @Override
     public boolean supports(Class<?> clazz) {
-        return Person.class.equals(clazz);
+        return User.class.equals(clazz);
     }
 
     @Override
     public void validate(Object target, Errors errors) {
-        Person person = (Person) target;
+        User user = (User) target;
 
-        if (peopleService.loadUserByUsername(person.getUsername()).isPresent()) {
-            errors.rejectValue("name", "", "Человек с такими ником уже существует!");
+        if (peopleService.loadUserByUsername(user.getUsername()).isPresent()) {
+            errors.rejectValue("name", "", "Человек с таким ником уже существует!");
         }
     }
 }

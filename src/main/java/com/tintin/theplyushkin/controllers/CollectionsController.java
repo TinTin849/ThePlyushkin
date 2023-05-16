@@ -1,41 +1,38 @@
 package com.tintin.theplyushkin.controllers;
 
 import com.tintin.theplyushkin.models.Collection;
-import com.tintin.theplyushkin.models.CollectionItem;
-import com.tintin.theplyushkin.models.TypeOfCollection;
-import com.tintin.theplyushkin.models.security.Person;
+import com.tintin.theplyushkin.models.Item;
+import com.tintin.theplyushkin.models.User;
+import com.tintin.theplyushkin.models.util.VisibilityLevel;
 import com.tintin.theplyushkin.security.PersonDetails;
 import com.tintin.theplyushkin.services.CollectionsService;
 import com.tintin.theplyushkin.services.TypesOfCollectionService;
-import com.tintin.theplyushkin.services.security.VisibilityLevelService;
+import com.tintin.theplyushkin.util.FileUploadUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 @RequestMapping("/collections")
 public class CollectionsController {
-    public static final String DEFAULT_VISIBILITY_OF_COLLECTION = "PUBLIC";
+    public static final VisibilityLevel DEFAULT_VISIBILITY_OF_COLLECTION = VisibilityLevel.PRIVATE;
 
     private final CollectionsService collectionsService;
     private final TypesOfCollectionService typesOfCollectionService;
-    private final VisibilityLevelService visibilityLevelService;
 
     @Autowired
     public CollectionsController(CollectionsService collectionsService,
-                                 TypesOfCollectionService typesOfCollectionService,
-                                 VisibilityLevelService visibilityLevelService) {
+                                 TypesOfCollectionService typesOfCollectionService) {
         this.collectionsService = collectionsService;
         this.typesOfCollectionService = typesOfCollectionService;
-        this.visibilityLevelService = visibilityLevelService;
     }
 
     @RequestMapping()
@@ -45,25 +42,27 @@ public class CollectionsController {
 
     @RequestMapping("/my")
     public String allUserCollections(Model model) {
-
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         PersonDetails userDetails = (PersonDetails) authentication.getPrincipal();
 
-        List<Collection> userCollections = collectionsService.findByCreator(userDetails.getPerson());
+        List<Collection> userCollections = collectionsService.findByUser(
+                userDetails.getPerson()
+        );
         model.addAttribute("userCollections", userCollections);
 
         return "collections/all_user_collections";
     }
 
     @RequestMapping("/my/{id}")
-    public String userCollection(@PathVariable("id") int id, Model model) {
+    public String userCollection(@PathVariable("id") int id,
+                                 Model model) {
 
 //        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 //        PersonDetails userDetails = (PersonDetails) authentication.getPrincipal();
         //todo access system to collections by user
 
         Collection currentCollection = collectionsService.findById(id);
-        List<CollectionItem> itemsOfCollection = currentCollection.getItemsOfCollection();
+        List<Item> itemsOfCollection = currentCollection.getItems();
         model.addAttribute("itemsOfCollection", itemsOfCollection);
         model.addAttribute("collection", currentCollection);
 
@@ -72,31 +71,45 @@ public class CollectionsController {
 
     @RequestMapping("/new")
     public String newCollection(Model model) {
-        Collection collection = new Collection();
-
         model.addAttribute("typesOfCollection", typesOfCollectionService.findAll());
-        model.addAttribute("collection", collection);
+        model.addAttribute("collection", new Collection());
 
         return "collections/new_user_collection";
     }
 
-    @RequestMapping("/add")
-    public String addCollection(@ModelAttribute("newCollection") Collection collection, Model model) {
+    @PostMapping("/add")
+    public String addCollection(@RequestParam("image") MultipartFile multipartFile,
+                                @ModelAttribute("newCollection") Collection collection,
+                                Model model) throws IOException {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         PersonDetails userDetails = (PersonDetails) authentication.getPrincipal();
-        Person creator = userDetails.getPerson();
+        User user = userDetails.getPerson();
 
+        var fileName = saveCollectionImage(multipartFile, collection);
+        collection.setImgUrl(fileName);
         collection.setId(null);
+        collection.setCollectionType(
+                typesOfCollectionService.findById(
+                        collection.getCollectionType().getId()
+                )
+        );
+        collection.setLikes(0);
+        collection.setUser(user);
+        collection.setVisibility(DEFAULT_VISIBILITY_OF_COLLECTION);
 
-        collection.setTypeOfCollection(typesOfCollectionService.findById(collection.getTypeOfCollection().getId()));
-        collection.setCreator(creator);
-        collection.setVisibility(visibilityLevelService.findByName(DEFAULT_VISIBILITY_OF_COLLECTION));
-
-        Collection savedCollection = collectionsService.save(collection);
-
+        var savedCollection = collectionsService.save(collection);
         model.addAttribute("collectionId", savedCollection.getId());
 
-        return "collections/new_user_collection_image";
+        return "redirect:/collections/my/" + savedCollection.getId();
+    }
+
+    private static String saveCollectionImage(MultipartFile multipartFile,
+                                              Collection collection) throws IOException {
+        String fileName = UUID.randomUUID() + ".jpg";
+
+        String uploadDir = "collection-photos";
+        FileUploadUtil.saveFile(uploadDir, fileName, multipartFile);
+        return fileName;
     }
 
     @DeleteMapping("/{id}")

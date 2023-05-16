@@ -1,7 +1,6 @@
 package com.tintin.theplyushkin.models;
 
-import com.tintin.theplyushkin.models.security.Person;
-import com.tintin.theplyushkin.models.security.VisibilityLevel;
+import com.tintin.theplyushkin.models.util.VisibilityLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -22,12 +21,12 @@ public class Collection {
     private Integer id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "owner", referencedColumnName = "id")
-    private Person creator;
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
+    private User user;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "collection_type", referencedColumnName = "id")
-    private TypeOfCollection typeOfCollection;
+    private CollectionType collectionType;
 
     @Column(name = "name")
     private String name;
@@ -35,15 +34,17 @@ public class Collection {
     @Column(name = "description")
     private String description;
 
-    @Column(name = "img")
-    @Basic(fetch = FetchType.LAZY)
-    private byte[] image;
-
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "visibility", referencedColumnName = "id")
+    @Enumerated(EnumType.STRING)
+    @Column(name = "visibility")
     private VisibilityLevel visibility;
+
+    @Column(name = "likes")
+    private Integer likes;
+
+    @Column(name = "img_url")
+    private String imgUrl;
 
     @OneToMany(mappedBy = "collection", fetch = FetchType.LAZY)
     @Cascade(org.hibernate.annotations.CascadeType.REMOVE)
-    private List<CollectionItem> itemsOfCollection;
+    private List<Item> items;
 }

@@ -22,12 +22,21 @@
 <!----------------------СЕКЦИЯ Мои коллекции------------------------------>
 <section>
     <div class="container-m">
-        <div class="maket-moi-kollekcii">
+        <div class="layout-my-collection">
             <div class="flex-wrapper-one">
-                <p class="pljushkin"><a href="../collections" style="color:rgba(144, 244, 254, 1); text-decoration:none;">Плюшкин</a></p>
-                <p class="moi-kollekcii">Мои коллекции</p>
-                <p class="glavnaja-stranica"><a href="../collections" style="color:#ffffff; text-decoration:none;">Главная страница</a></p>
-                <p class="lichnyj-kabinet">Личный кабинет</p>
+                <p class="pljushkin">
+                    <a href="../collections" style="color:rgba(144, 244, 254, 1); text-decoration:none;">Плюшкин</a>
+                </p>
+
+                <p class="my-collections">Мои коллекции</p>
+
+                <p class="main-page">
+                    <a href="../collections" style="color:#ffffff; text-decoration:none;">Главная страница</a>
+                </p>
+
+                <p class="personal-account">
+                    Личный кабинет
+                </p>
             </div>
 
             <div class="container">
@@ -38,7 +47,10 @@
                                 <img th:src="@{../images/collections/{id}(id=${collection.getId()})}"
                                      alt="Lights" style="width:100%">
                                 <div class="caption">
-                                    <p class="name-of-collection"><a th:text="${collection.getName()}" style="color:#000000; text-decoration:none;">text</a></p>
+                                    <p class="name-of-collection">
+                                        <a th:text="${collection.getName()}"
+                                           style="color:#000000; text-decoration:none;">text</a>
+                                    </p>
                                 </div>
                             </a>
                         </div>
@@ -46,13 +58,16 @@
                 </div>
             </div>
 
-            <div class="net-kollekcii-sozdajte">
-                <p class="zdes-poka-pusto-sozdajte-pervuju-kollek">
-                    Добавить новую коллекцию!
+            <div class="no-collection">
+                <p class="empty-here-create-new">
+                    Добавьте новую коллекцию!
                 </p>
-                <div class="knopka"><p class="sozdat"><a href="../collections/new" style="color:#ffffff; text-decoration:none;">Создать</a></p></div>
-              </div>
-
+                <div class="my-button">
+                    <p class="create-new">
+                        <a href="../collections/new" style="color:#ffffff; text-decoration:none;">Создать</a>
+                    </p>
+                </div>
+            </div>
         </div>
     </div>
 </section>

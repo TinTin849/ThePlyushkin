@@ -1,9 +1,9 @@
 package com.tintin.theplyushkin.services.security;
 
-import com.tintin.theplyushkin.models.security.Person;
-import com.tintin.theplyushkin.repositories.security.AccessLevelRepository;
-import com.tintin.theplyushkin.repositories.security.PeopleRepository;
-import com.tintin.theplyushkin.repositories.security.VisibilityLevelRepository;
+import com.tintin.theplyushkin.models.User;
+import com.tintin.theplyushkin.models.util.AccessLevel;
+import com.tintin.theplyushkin.models.util.VisibilityLevel;
+import com.tintin.theplyushkin.repositories.UsersRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
@@ -11,30 +11,22 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class RegistrationService {
-
-    private final AccessLevelRepository accessLevelRepository;
-    private final VisibilityLevelRepository visibilityLevelRepository;
-
-    private final PeopleRepository peopleRepository;
+    private final UsersRepository usersRepository;
     private final PasswordEncoder passwordEncoder;
 
     @Autowired
-    public RegistrationService(AccessLevelRepository accessLevelRepository,
-                               VisibilityLevelRepository visibilityLevelRepository,
-                               PeopleRepository peopleRepository,
+    public RegistrationService(UsersRepository usersRepository,
                                PasswordEncoder passwordEncoder) {
-        this.accessLevelRepository = accessLevelRepository;
-        this.visibilityLevelRepository = visibilityLevelRepository;
-        this.peopleRepository = peopleRepository;
+        this.usersRepository = usersRepository;
         this.passwordEncoder = passwordEncoder;
     }
 
     @Transactional
-    public void register(Person person) {
-        person.setPassword(passwordEncoder.encode(person.getPassword()));
-        person.setRole(accessLevelRepository.findFirstByLevelName("ROLE_USER"));
-        person.setVisibility(visibilityLevelRepository.findFirstByLevelName("PUBLIC"));
+    public void register(User user) {
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setRole(AccessLevel.USER);
+        user.setVisibility(VisibilityLevel.PRIVATE);
 
-        peopleRepository.save(person);
+        usersRepository.save(user);
     }
 }
