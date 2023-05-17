@@ -8,11 +8,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional(readOnly = true)
-public class FeatureService {
+public class FeaturesService {
     private final FeaturesRepository featuresRepository;
 
     @Autowired
-    public FeatureService(FeaturesRepository featuresRepository) {
+    public FeaturesService(FeaturesRepository featuresRepository) {
         this.featuresRepository = featuresRepository;
     }
 

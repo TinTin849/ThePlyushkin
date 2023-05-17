@@ -10,11 +10,11 @@ import java.util.List;
 
 @Service
 @Transactional(readOnly = true)
-public class TypesOfCollectionService {
+public class CollectionTypesService {
     private final CollectionTypesRepository collectionTypesRepository;
 
     @Autowired
-    public TypesOfCollectionService(CollectionTypesRepository collectionTypesRepository) {
+    public CollectionTypesService(CollectionTypesRepository collectionTypesRepository) {
         this.collectionTypesRepository = collectionTypesRepository;
     }
 

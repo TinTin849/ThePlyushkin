@@ -8,11 +8,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 @Service
 @Transactional(readOnly = true)
-public class CollectionItemsService {
+public class ItemsService {
     private final ItemsRepository itemsRepository;
 
     @Autowired
-    public CollectionItemsService(ItemsRepository itemsRepository) {
+    public ItemsService(ItemsRepository itemsRepository) {
         this.itemsRepository = itemsRepository;
     }
 

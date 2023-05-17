@@ -22,8 +22,9 @@
 <!----------------------СЕКЦИЯ Авторизация------------------------------>
 <section><br><br><br><br><br>
     <!--br'ки временные, т.к. каким-то магическим образом не работают педдинги в css, есть предположение что блокирует код на java-->
+    <div class="text-center"><p class="fs-3">Добро пожаловать в Плюшкин!</p></div>
     <div class="container-xxl w-25">
-        <p class="fs-3">Добро пожаловать в Плюшкин!</p>
+
         <br>
         <form name="f" method="post" action="/process_login">
             <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}"/>

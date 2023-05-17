@@ -36,6 +36,14 @@
     line-height: var(--inter-64-extra-bold-line-height);
 }
 
+.our-users-collections {
+    color: var(--pale-turquoise);
+    font-family: var(--inter-64-extra-bold-family);
+    font-size: var(--inter-64-extra-bold-size);
+    font-weight: var(--inter-64-extra-bold-weight);
+    line-height: var(--inter-64-extra-bold-line-height);
+}
+
 .my-collections {
     max-width: 189px;
     color: var(--white);

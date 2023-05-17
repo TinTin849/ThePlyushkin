@@ -32,10 +32,10 @@
                 <p class="personal-account">Личный кабинет</p>
             </div>
 
-            <div class="container">
+            <div class="container-xxl w-50">
                 <form class="form-horizontal" th:method="POST" th:action="@{/collections/add}"
                       th:object="${collection}" enctype="multipart/form-data">
-                    <div class="form-group">
+                    <div class="form-group mb-3">
                         <label for="sel1">Выберите тип коллекции:</label>
                         <select class="form-control" id="sel1" th:field="*{collectionType.id}">
                             <option th:each="p : ${typesOfCollection}"
@@ -45,34 +45,30 @@
                             </option>
                         </select>
                     </div>
-                    <div class="form-group">
-                        <label class="control-label col-sm-2" for="name">Название коллекции:</label>
-                        <div class="col-sm-10">
+                    <div class="form-group mb-3">
+                        <label class="control-label" for="name">Название коллекции:</label>
+                        <div>
                             <input type="text" th:field="*{name}" class="form-control" id="name"
                                    placeholder="Введите название коллекции" name="name">
                         </div>
                     </div>
-                    <div class="form-group">
-                        <label class="control-label col-sm-2" for="description">Описание коллекции:</label>
-                        <div class="col-sm-10">
+                    <div class="form-group mb-3">
+                        <label class="control-label" for="description">Описание коллекции:</label>
+                        <div>
                             <input type="text" th:field="*{description}" class="form-control" id="description"
                                    placeholder="Введите описание коллекции" name="description">
                         </div>
                     </div>
                     <br>
                     <div>
-                        <label>Photo: </label>
+                        <label>Изображение: </label>
                         <input type="file" name="image" accept="image/png, image/jpeg"/>
                     </div>
                     <br>
-                    <div class="form-group">
-                        <div class="col-sm-offset-2 col-sm-10">
-                            <button type="submit" class="btn btn-default">
-                                <div class="no-collection">
-                                    <div class="my-button">
-                                        <p class="create-collection">Создать коллекцию</p>
-                                    </div>
-                                </div>
+                    <div class="form-group d-grid gap-3">
+                        <div>
+                            <button type="submit" class="btn btn-primary btn-block">
+                                Создать коллекцию
                             </button>
                         </div>
                     </div>

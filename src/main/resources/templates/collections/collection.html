@@ -1,5 +1,6 @@
 <!doctype html>
-<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <head>
     <!-- Обязательные метатеги -->
     <meta charset="utf-8">
@@ -37,7 +38,7 @@
                 <p th:text="${collection.description}">About collection info</p>
                 <div class="row row-cols-1 row-cols-md-3 g-4">
                     <div class="col" th:each="item : ${itemsOfCollection}">
-                        <a th:href="@{/items/{id}(id=${item.getId()})}" target="_blank">
+                        <a th:href="@{/items/{id}(id=${item.getId()})}">
                             <div class="card h-100">
                                 <img th:src="@{/images/items/{id}(id=${item.getId()})}" class="card-img-top" alt="...">
                                 <div class="card-body">
@@ -53,42 +54,21 @@
                         </a>
                     </div>
                 </div>
+                <div th:if="${isOwner}">
+                    <br><br>
+                    <form th:action="@{/collections/{id}(id=${collection.getId()})}" th:method="DELETE">
+                        <input type="submit" class="btn btn-danger" value="Удалить коллекцию"/>
+                    </form>
 
-                <!--                 <div class="row"> -->
-                <!--                   <div class="col-md-4" th:each="item : ${itemsOfCollection}"> -->
-                <!--                          <div class="thumbnail"> -->
-                <!--                               <a th:href="@{/items/{id}(id=${item.getId()})}" target="_blank"> -->
-                <!--                                <div class="card" style="width: 18rem;"> -->
-                <!--                                     <img th:src="@{/images/items/{id}(id=${item.getId()})}" class="card-img-top" alt="..."> -->
-                <!--                                     <div class="card-body"> -->
-                <!--                                         <div class="caption"> -->
-                <!--                                     <h5 class="card-title"><a th:text="${item.getName()}" style="color:#000000; text-decoration:none;">text</a></h5> -->
-                <!--                                        </div> -->
-                <!--                                    </div> -->
-                <!--                                  </div> -->
-                <!--                              </a> -->
-                <!--  *****************************************************************************************************************************************************************  -->
-                <!--                           <a th:href="@{/items/{id}(id=${item.getId()})}" target="_blank"> -->
-                <!--                               <img th:src="@{/images/items/{id}(id=${item.getId()})}" -->
-                <!--                                    alt="Lights" style="width:100%"> -->
-                <!--                               <div class="caption"> -->
-                <!--                                   <p class="name-of-collection"><a th:text="${item.getName()}" style="color:#000000; text-decoration:none;">text</a></p> -->
-                <!--                               </div> -->
-                <!--                           </a> -->
-
-                <br><br>
-                <form th:action="@{/collections/{id}(id=${collection.getId()})}" th:method="DELETE">
-                    <input type="submit" class="btn btn-danger" value="Удалить коллекцию"/>
-                </form>
-
-                <div class="no-collection">
-                    <p class="empty-here-create-new">
-                        Не забывайте пополнять коллекцию
-                    </p>
-                    <div class="my-button"><p class="create-new">
-                        <a th:href="@{/items/new/{id}(id=${collection.getId()})}"
-                           style="color:#ffffff; text-decoration:none;">Добавить элемент</a>
-                    </p></div>
+                    <div class="no-collection">
+                        <p class="empty-here-create-new">
+                            Не забывайте пополнять коллекцию
+                        </p>
+                        <div class="my-button"><p class="create-new">
+                            <a th:href="@{/items/new/{id}(id=${collection.getId()})}"
+                               style="color:#ffffff; text-decoration:none;">Добавить элемент</a>
+                        </p></div>
+                    </div>
                 </div>
             </div>
         </div>

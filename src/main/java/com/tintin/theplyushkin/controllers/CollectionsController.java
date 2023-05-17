@@ -6,7 +6,7 @@ import com.tintin.theplyushkin.models.User;
 import com.tintin.theplyushkin.models.util.VisibilityLevel;
 import com.tintin.theplyushkin.security.PersonDetails;
 import com.tintin.theplyushkin.services.CollectionsService;
-import com.tintin.theplyushkin.services.TypesOfCollectionService;
+import com.tintin.theplyushkin.services.CollectionTypesService;
 import com.tintin.theplyushkin.util.FileUploadUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -26,17 +26,20 @@ public class CollectionsController {
     public static final VisibilityLevel DEFAULT_VISIBILITY_OF_COLLECTION = VisibilityLevel.PRIVATE;
 
     private final CollectionsService collectionsService;
-    private final TypesOfCollectionService typesOfCollectionService;
+    private final CollectionTypesService collectionTypesService;
 
     @Autowired
     public CollectionsController(CollectionsService collectionsService,
-                                 TypesOfCollectionService typesOfCollectionService) {
+                                 CollectionTypesService collectionTypesService) {
         this.collectionsService = collectionsService;
-        this.typesOfCollectionService = typesOfCollectionService;
+        this.collectionTypesService = collectionTypesService;
     }
 
     @RequestMapping()
-    public String index() {
+    public String index(Model model) {
+        List<Collection> publicCollections = collectionsService.findPublic();
+        model.addAttribute("publicCollections", publicCollections);
+
         return "collections/index";
     }
 
@@ -57,11 +60,22 @@ public class CollectionsController {
     public String userCollection(@PathVariable("id") int id,
                                  Model model) {
 
-//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//        PersonDetails userDetails = (PersonDetails) authentication.getPrincipal();
-        //todo access system to collections by user
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        PersonDetails userDetails = (PersonDetails) authentication.getPrincipal();
+        User currentUser = userDetails.getPerson();
 
         Collection currentCollection = collectionsService.findById(id);
+
+        boolean isOwner = false;
+        if (currentUser.getId() == currentCollection.getUser().getId()) {
+            isOwner = true;
+        } else {
+            if (currentCollection.getVisibility() == VisibilityLevel.PRIVATE) {
+                return "auth/access-denied";
+            }
+        }
+        model.addAttribute("isOwner", isOwner);
+
         List<Item> itemsOfCollection = currentCollection.getItems();
         model.addAttribute("itemsOfCollection", itemsOfCollection);
         model.addAttribute("collection", currentCollection);
@@ -71,7 +85,7 @@ public class CollectionsController {
 
     @RequestMapping("/new")
     public String newCollection(Model model) {
-        model.addAttribute("typesOfCollection", typesOfCollectionService.findAll());
+        model.addAttribute("typesOfCollection", collectionTypesService.findAll());
         model.addAttribute("collection", new Collection());
 
         return "collections/new_user_collection";
@@ -89,7 +103,7 @@ public class CollectionsController {
         collection.setImgUrl(fileName);
         collection.setId(null);
         collection.setCollectionType(
-                typesOfCollectionService.findById(
+                collectionTypesService.findById(
                         collection.getCollectionType().getId()
                 )
         );

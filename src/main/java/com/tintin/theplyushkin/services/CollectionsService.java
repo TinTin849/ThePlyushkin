@@ -3,6 +3,7 @@ package com.tintin.theplyushkin.services;
 import com.tintin.theplyushkin.models.Collection;
 import com.tintin.theplyushkin.models.Item;
 import com.tintin.theplyushkin.models.User;
+import com.tintin.theplyushkin.models.util.VisibilityLevel;
 import com.tintin.theplyushkin.repositories.CollectionsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -13,7 +14,6 @@ import java.util.List;
 @Service
 @Transactional(readOnly = true)
 public class CollectionsService {
-
     private final CollectionsRepository collectionsRepository;
 
     @Autowired
@@ -29,13 +29,12 @@ public class CollectionsService {
         return collectionsRepository.findCollectionByUser(user);
     }
 
-    public byte[] getImageByCollectionId(int id) {
-        //return findById(id).getImage();
-        return null;
-    }
-
     public List<Item> getItemsOfCollection(int id) {
         return findById(id).getItems();
+    }
+
+    public List<Collection> findPublic() {
+        return collectionsRepository.findByVisibility(VisibilityLevel.PUBLIC);
     }
 
     @Transactional

@@ -9,7 +9,6 @@ import java.util.Optional;
 
 @Service
 public class PeopleService {
-
     private final UsersRepository usersRepository;
 
     @Autowired

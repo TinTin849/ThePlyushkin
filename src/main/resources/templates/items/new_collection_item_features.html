@@ -24,31 +24,32 @@
     <div class="container-m">
         <div class="layout-my-collections">
             <div class="flex-wrapper-one">
-                <p class="pljushkin"><a href="/collections" style="color:rgba(144, 244, 254, 1); text-decoration:none;">Плюшкин</a>
+                <p class="pljushkin">
+                    <a href="/collections" style="color:rgba(144, 244, 254, 1); text-decoration:none;">Плюшкин</a>
                 </p>
                 <p class="my-collections">Мои коллекции</p>
-                <p class="main-page"><a href="/collections" style="color:#ffffff; text-decoration:none;">Главная
-                    страница</a></p>
+                <p class="main-page">
+                    <a href="/collections" style="color:#ffffff; text-decoration:none;">Главная страница</a>
+                </p>
                 <p class="personal-account">Личный кабинет</p>
             </div>
 
-            <div class="container">
-                <form class="form-horizontal" th:method="PUSH"
-                      th:action="@{/items/add/{id}(id=${collectionItem.getId()})}">
-                    <div class="form-group" th:each="feature : ${featuresOfCollectionType}">
-                        <label class="control-label col-sm-2" th:for="${feature.name}"
-                               th:text="${feature.getName()}">Text</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" th:name="${feature.id}"
+            <div class="container-xxl w-50">
+                <form class="form-horizontal" th:method="PUSH" th:action="@{/items/add/{id}(id=${collectionItem.getId()})}">
+                    <div class="form-group mb-3" th:each="feature : ${featuresOfCollectionType}">
+                        <label class="control-label" th:for="${feature.name}" th:text="${feature.getName()}">Text</label>
+                        <div >
+                            <input type="text" class="form-control"
+                                   th:name="${feature.id}"
                                    th:id="${feature.name}"
                                    th:placeholder="${feature.getName()}">
                         </div>
                     </div>
-                    <div class="my-button">
-                        <div class="col-sm-offset-2 col-sm-10">
-                            <button type="submit" class="create-collection">Записать</button>
-                        </div>
+                    <br>
+                    <div class="d-grid gap-3">
+                        <button type="submit" class="btn btn-primary btn-block">Записать</button>
                     </div>
+
                 </form>
             </div>
         </div>

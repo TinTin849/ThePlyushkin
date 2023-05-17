@@ -1,8 +1,8 @@
 package com.tintin.theplyushkin.controllers;
 
 import com.tintin.theplyushkin.models.ItemImage;
-import com.tintin.theplyushkin.services.CollectionItemsService;
 import com.tintin.theplyushkin.services.CollectionsService;
+import com.tintin.theplyushkin.services.ItemImagesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,12 +21,13 @@ import java.util.List;
 @RequestMapping("/images")
 public class ImagesController {
     private final CollectionsService collectionsService;
-    private final CollectionItemsService collectionItemsService;
+    private final ItemImagesService itemImagesService;
 
     @Autowired
-    public ImagesController(CollectionsService collectionsService, CollectionItemsService collectionItemsService) {
+    public ImagesController(CollectionsService collectionsService,
+                            ItemImagesService itemImagesService) {
         this.collectionsService = collectionsService;
-        this.collectionItemsService = collectionItemsService;
+        this.itemImagesService = itemImagesService;
     }
 
     @GetMapping("/collections/{id}")
@@ -40,10 +41,10 @@ public class ImagesController {
     }
 
     @GetMapping("/items/{id}")
-    public void showItemOfCollection(@PathVariable("id") int id,
-                                     HttpServletResponse response) throws IOException {
-        var item = collectionItemsService.findById(id);
-        List<ItemImage> images = item.getItemImages();
+    public void showImageOfItem(@PathVariable("id") int id,
+                                HttpServletResponse response) throws IOException {
+        List<ItemImage> images = itemImagesService.findByItemId(id);
+        //TODO отображение нескольких картинок стоит добавить
         String image = images.get(0).getImgUrl();
 
         var imgFile = System.getProperty("user.dir") + "/item-photos/" + image;

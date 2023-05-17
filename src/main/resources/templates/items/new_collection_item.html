@@ -32,34 +32,34 @@
                 <p class="personal-account">Личный кабинет</p>
             </div>
 
-            <div class="container">
+            <div class="container-xxl w-50">
                 <h2>Новый элемент коллекции</h2>
                 <form class="form-horizontal" th:method="POST"
                       th:action="@{/items/new/{number}/features(number=${collectionId})}"
                       th:object="${collectionItem}" enctype="multipart/form-data">
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="name">Название элемента:</label>
-                        <div class="col-sm-10">
+                        <label class="control-label" for="name">Название элемента:</label>
+                        <div>
                             <input type="text" th:field="*{name}" class="form-control" id="name"
                                    placeholder="Введите название элемента" name="name">
                         </div>
                     </div>
                     <div class="form-group">
-                        <label class="control-label col-sm-2" for="description">Описание элемента:</label>
-                        <div class="col-sm-10">
+                        <label class="control-label" for="description">Описание элемента:</label>
+                        <div>
                             <input type="text" th:field="*{description}" class="form-control" id="description"
                                    placeholder="Введите описание элемента" name="description">
                         </div>
                     </div>
                     <br>
                     <div>
-                        <label>Photo: </label>
+                        <label class="control-label">Выберите фотографию: </label>
                         <input type="file" name="image" accept="image/png, image/jpeg"/>
                     </div>
                     <br>
-                    <div class="my-button">
-                        <div class="col-sm-offset-2 col-sm-10">
-                            <button type="submit" class="create-collection">Заполнить характеристики</button>
+                    <div class="d-grid gap-3">
+                        <div>
+                            <button type="submit" class="btn btn-primary btn-block">Заполнить характеристики</button>
                         </div>
                     </div>
                 </form>

@@ -51,9 +51,12 @@
                                 </div>
                             </div>
                         </div>
-                        <form th:action="@{/items/{id}(id=${currentItem.getId()})}" th:method="DELETE">
-                            <input type="submit" class="btn btn-danger" value="Удалить"/>
-                        </form>
+
+                        <div th:if="${isOwner}">
+                            <form th:action="@{/items/{id}(id=${currentItem.getId()})}" th:method="DELETE">
+                                <input type="submit" class="btn btn-danger" value="Удалить"/>
+                            </form>
+                        </div>
                     </div>
                 </div>
             </div>
