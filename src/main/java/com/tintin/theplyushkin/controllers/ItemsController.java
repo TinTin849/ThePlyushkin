@@ -45,9 +45,7 @@ public class ItemsController {
     @RequestMapping("/{id}")
     public String collectionItem(Model model,
                                  @PathVariable("id") int id) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        PersonDetails userDetails = (PersonDetails) authentication.getPrincipal();
-        User currentUser = userDetails.getPerson();
+        User currentUser = getCurrentUser();
 
         Item currentItem = itemsService.findById(id);
 
@@ -75,9 +73,7 @@ public class ItemsController {
     public String newItem(Model model,
                           @PathVariable("id") int collectionId) {
         model.addAttribute("collectionId", collectionId);
-
-        Item item = new Item();
-        model.addAttribute("collectionItem", item);
+        model.addAttribute("collectionItem", new Item());
 
         return "items/new_collection_item";
     }
@@ -97,7 +93,7 @@ public class ItemsController {
 
         var savedItem = itemsService.save(item);
 
-        var fileName = saveItemImage(multipartFile, item);
+        var fileName = saveItemImage(multipartFile, savedItem);
         var image = new ItemImage();
         image.setItem(savedItem);
         image.setImgUrl(fileName);
@@ -153,5 +149,11 @@ public class ItemsController {
         itemsService.delete(id);
 
         return "redirect:/collections/my/" + collectionId;
+    }
+
+    private static User getCurrentUser() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        PersonDetails userDetails = (PersonDetails) authentication.getPrincipal();
+        return userDetails.getPerson();
     }
 }

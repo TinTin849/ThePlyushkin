@@ -45,24 +45,18 @@ public class CollectionsController {
 
     @RequestMapping("/my")
     public String allUserCollections(Model model) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        PersonDetails userDetails = (PersonDetails) authentication.getPrincipal();
+        User currentUser = getCurrentUser();
 
-        List<Collection> userCollections = collectionsService.findByUser(
-                userDetails.getPerson()
-        );
+        List<Collection> userCollections = collectionsService.findByUser(currentUser);
         model.addAttribute("userCollections", userCollections);
 
         return "collections/all_user_collections";
     }
 
     @RequestMapping("/my/{id}")
-    public String userCollection(@PathVariable("id") int id,
-                                 Model model) {
-
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        PersonDetails userDetails = (PersonDetails) authentication.getPrincipal();
-        User currentUser = userDetails.getPerson();
+    public String userCollection(Model model,
+                                 @PathVariable("id") int id) {
+        User currentUser = getCurrentUser();
 
         Collection currentCollection = collectionsService.findById(id);
 
@@ -92,14 +86,12 @@ public class CollectionsController {
     }
 
     @PostMapping("/add")
-    public String addCollection(@RequestParam("image") MultipartFile multipartFile,
-                                @ModelAttribute("newCollection") Collection collection,
-                                Model model) throws IOException {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        PersonDetails userDetails = (PersonDetails) authentication.getPrincipal();
-        User user = userDetails.getPerson();
+    public String addCollection(Model model,
+                                @RequestParam("image") MultipartFile multipartFile,
+                                @ModelAttribute("newCollection") Collection collection) throws IOException {
+        User user = getCurrentUser();
+        String fileName = saveCollectionImage(multipartFile, collection);
 
-        var fileName = saveCollectionImage(multipartFile, collection);
         collection.setImgUrl(fileName);
         collection.setId(null);
         collection.setCollectionType(
@@ -111,10 +103,17 @@ public class CollectionsController {
         collection.setUser(user);
         collection.setVisibility(DEFAULT_VISIBILITY_OF_COLLECTION);
 
-        var savedCollection = collectionsService.save(collection);
+        Collection savedCollection = collectionsService.save(collection);
         model.addAttribute("collectionId", savedCollection.getId());
 
         return "redirect:/collections/my/" + savedCollection.getId();
+    }
+
+    @DeleteMapping("/{id}")
+    public String deleteCollection(@PathVariable("id") int id) {
+        collectionsService.deleteById(id);
+
+        return "redirect:/collections/my";
     }
 
     private static String saveCollectionImage(MultipartFile multipartFile,
@@ -126,10 +125,9 @@ public class CollectionsController {
         return fileName;
     }
 
-    @DeleteMapping("/{id}")
-    public String deleteCollection(@PathVariable("id") int id) {
-        collectionsService.deleteById(id);
-
-        return "redirect:/collections/my";
+    private static User getCurrentUser() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        PersonDetails userDetails = (PersonDetails) authentication.getPrincipal();
+        return userDetails.getPerson();
     }
 }

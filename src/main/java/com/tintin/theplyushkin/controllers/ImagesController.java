@@ -37,7 +37,7 @@ public class ImagesController {
         String image = collection.getImgUrl();
 
         var imgFile = System.getProperty("user.dir") + "/collection-photos/" + image;
-        showImage(response, imgFile);
+        showImage(imgFile, response);
     }
 
     @GetMapping("/items/{id}")
@@ -48,10 +48,11 @@ public class ImagesController {
         String image = images.get(0).getImgUrl();
 
         var imgFile = System.getProperty("user.dir") + "/item-photos/" + image;
-        showImage(response, imgFile);
+        showImage(imgFile, response);
     }
 
-    private void showImage(HttpServletResponse response, String imgFile) throws IOException {
+    private void showImage(String imgFile,
+                           HttpServletResponse response) throws IOException {
         BufferedImage bImage = ImageIO.read(new File(imgFile));
         ByteArrayOutputStream bos = new ByteArrayOutputStream();
         ImageIO.write(bImage, "jpg", bos);
