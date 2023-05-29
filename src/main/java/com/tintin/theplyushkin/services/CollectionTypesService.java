@@ -1,6 +1,7 @@
 package com.tintin.theplyushkin.services;
 
 import com.tintin.theplyushkin.models.CollectionType;
+import com.tintin.theplyushkin.models.User;
 import com.tintin.theplyushkin.repositories.CollectionTypesRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,5 +25,14 @@ public class CollectionTypesService {
 
     public CollectionType findById(int id) {
         return collectionTypesRepository.findById(id).get();
+    }
+
+    public List<CollectionType> findByUser(User user) {
+        return collectionTypesRepository.findByUser(user);
+    }
+
+    @Transactional
+    public CollectionType save(CollectionType collectionType) {
+        return collectionTypesRepository.save(collectionType);
     }
 }

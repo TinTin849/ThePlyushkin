@@ -116,6 +116,19 @@ public class CollectionsController {
         return "redirect:/collections/my";
     }
 
+    @PostMapping("/{id}/visibility")
+    public String changeVisibility(@PathVariable("id") int id) {
+        var collection = collectionsService.findById(id);
+        if (collection.getVisibility() == VisibilityLevel.PRIVATE) {
+            collection.setVisibility(VisibilityLevel.PUBLIC);
+        } else {
+            collection.setVisibility(VisibilityLevel.PRIVATE);
+        }
+        collectionsService.save(collection);
+
+        return "redirect:/collections/my/" + collection.getId();
+    }
+
     private static String saveCollectionImage(MultipartFile multipartFile,
                                               Collection collection) throws IOException {
         String fileName = UUID.randomUUID() + ".jpg";

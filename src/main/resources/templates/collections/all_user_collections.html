@@ -21,42 +21,76 @@
 <body>
 <!----------------------СЕКЦИЯ Мои коллекции------------------------------>
 <section>
+
+    <nav class="navbar navbar-expand-lg sticky-top navbar-light p-3 shadow-sm" style="background-color: #e3f2fd;">
+        <div class="container">
+            <a class="navbar-brand" href="/collections"><i class="fa-solid fa-shop me-2"></i> <strong>ПЛЮШКИН</strong></a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+                    aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class=" collapse navbar-collapse" id="navbarNavDropdown">
+                <ul class="navbar-nav ms-auto ">
+                    <li class="nav-item">
+                        <a class="nav-link mx-2 text-uppercase active" aria-current="page" href="/collections">Главная</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link mx-2 text-uppercase" href="/collections/my">Мои коллекции</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link mx-2 text-uppercase" href="/collection-blanks">Шаблоны коллекций</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link mx-2 text-uppercase" href="#">О сайте</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ms-auto ">
+                    <li class="nav-item">
+                        <a class="nav-link mx-2 text-uppercase" href="/account"><i class="fa-solid fa-circle-user me-1"></i> Аккаунт</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
     <div class="container-m">
         <div class="layout-my-collection">
             <div class="flex-wrapper-one">
-                <p class="pljushkin">
-                    <a href="../collections" style="color:rgba(144, 244, 254, 1); text-decoration:none;">Плюшкин</a>
-                </p>
+<!--                <p class="pljushkin">-->
+<!--                    <a href="../collections" style="color:rgba(144, 244, 254, 1); text-decoration:none;"></a>-->
+<!--                </p>-->
 
                 <p class="my-collections">Мои коллекции</p>
 
-                <p class="main-page">
-                    <a href="../collections" style="color:#ffffff; text-decoration:none;">Главная страница</a>
-                </p>
+<!--                <p class="main-page">-->
+<!--                    <a href="../collections" style="color:#ffffff; text-decoration:none;">Главная страница</a>-->
+<!--                </p>-->
 
-                <p class="personal-account">
-                    Личный кабинет
-                </p>
+<!--                <p class="personal-account">-->
+<!--                    Личный кабинет-->
+<!--                </p>-->
             </div>
 
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-4" th:each="collection : ${userCollections}">
-                        <div class="thumbnail">
-                            <a th:href="@{../collections/my/{id}(id=${collection.getId()})}">
+            <section class="section">
+                <div class="container">
+                    <div class="row justify-content-center">
+                        <!-- topic-item -->
+                        <div class="col-lg-4 col-sm-6 mb-4" th:each="collection : ${userCollections}">
+                            <a th:href="@{../collections/my/{id}(id=${collection.getId()})}"
+                               class="px-4 py-5 bg-white shadow text-center d-block match-height">
+                                <i class="ti-panel icon text-primary d-block mb-4"></i>
                                 <img th:src="@{../images/collections/{id}(id=${collection.getId()})}"
                                      alt="Lights" style="width:100%">
-                                <div class="caption">
-                                    <p class="name-of-collection">
-                                        <a th:text="${collection.getName()}"
-                                           style="color:#000000; text-decoration:none;">text</a>
-                                    </p>
-                                </div>
+                                <h3 class="mb-3 mt-0" th:text="${collection.getName()}"
+                                    style="color:#000000; text-decoration:none;">
+                                    Название коллекции
+                                </h3>
                             </a>
                         </div>
                     </div>
                 </div>
-            </div>
+            </section>
 
             <div class="no-collection">
                 <p class="empty-here-create-new">
@@ -71,6 +105,14 @@
         </div>
     </div>
 </section>
+
+<!-- Подвал сайта -->
+<footer class="page-footer font-small blue" style="height: 62px; background-color: #e3f2fd;">
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-1">
+        plushkin@gmail.com <br>© "Плюшкин" 2023
+    </div>
+</footer>
 
 </body>
 </html>

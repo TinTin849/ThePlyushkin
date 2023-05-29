@@ -21,7 +21,7 @@
 
 <nav class="navbar navbar-expand-lg sticky-top navbar-light p-3 shadow-sm" style="background-color: #e3f2fd;">
     <div class="container">
-        <a class="navbar-brand" href="../collections"><i class="fa-solid fa-shop me-2"></i> <strong>ПЛЮШКИН</strong></a>
+        <a class="navbar-brand" href="/collections"><i class="fa-solid fa-shop me-2"></i> <strong>ПЛЮШКИН</strong></a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
                 aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -30,13 +30,13 @@
         <div class=" collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ms-auto ">
                 <li class="nav-item">
-                    <a class="nav-link mx-2 text-uppercase active" aria-current="page" href="../collections">Главная</a>
+                    <a class="nav-link mx-2 text-uppercase active" aria-current="page" href="/collections">Главная</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link mx-2 text-uppercase" href="../collections/my">Мои коллекции</a>
+                    <a class="nav-link mx-2 text-uppercase" href="/collections/my">Мои коллекции</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link mx-2 text-uppercase" href="#">Мои коллекции 2</a>
+                    <a class="nav-link mx-2 text-uppercase" href="/collection-blanks">Шаблоны коллекций</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link mx-2 text-uppercase" href="#">О сайте</a>
@@ -44,7 +44,7 @@
             </ul>
             <ul class="navbar-nav ms-auto ">
                 <li class="nav-item">
-                    <a class="nav-link mx-2 text-uppercase" href="../account"><i class="fa-solid fa-circle-user me-1"></i> Аккаунт</a>
+                    <a class="nav-link mx-2 text-uppercase" href="/account"><i class="fa-solid fa-circle-user me-1"></i> Аккаунт</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link mx-2 text-uppercase" href="javascript: document.logoutForm.submit()">
@@ -138,18 +138,18 @@
     </div>
 </div>
 
-
-
-
-
-
-
-
-
-
 <form th:action="@{/logout}" method="post" th:hidden="true" name="logoutForm">
     <input type="submit" value="Logout" />
 </form>
+
+<!-- Подвал сайта -->
+<br>
+<footer class="page-footer font-small blue" style="height: 62px; background-color: #e3f2fd;">
+    <!-- Copyright -->
+    <div class="footer-copyright text-center py-1">
+        plushkin@gmail.com <br>© "Плюшкин" 2023
+    </div>
+</footer>
 
 </body>
 </html>
