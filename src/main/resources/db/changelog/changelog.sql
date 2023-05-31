@@ -67,3 +67,8 @@ create table item_features
     feature_id integer not null references features,
     data       text    not null
 );
+
+-- changeset liquibase:2
+
+alter table users add first_name varchar(50);
+alter table users add last_name varchar(50);

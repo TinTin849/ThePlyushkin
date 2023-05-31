@@ -1,6 +1,7 @@
 package com.tintin.theplyushkin.controllers;
 
 import com.tintin.theplyushkin.models.Collection;
+import com.tintin.theplyushkin.models.CollectionType;
 import com.tintin.theplyushkin.models.Item;
 import com.tintin.theplyushkin.models.User;
 import com.tintin.theplyushkin.models.util.VisibilityLevel;
@@ -19,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/collections")
@@ -79,7 +81,11 @@ public class CollectionsController {
 
     @RequestMapping("/new")
     public String newCollection(Model model) {
-        model.addAttribute("typesOfCollection", collectionTypesService.findAll());
+        List<CollectionType> blanksOfUser = collectionTypesService.findAll();
+        List<CollectionType> activeBlanks = blanksOfUser.stream()
+                .filter(it -> it.getVisibility() != VisibilityLevel.DELETED)
+                .collect(Collectors.toList());
+        model.addAttribute("typesOfCollection", activeBlanks);
         model.addAttribute("collection", new Collection());
 
         return "collections/new_user_collection";

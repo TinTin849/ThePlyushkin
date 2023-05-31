@@ -1,33 +1,32 @@
 package com.tintin.theplyushkin.controllers;
 
-import com.tintin.theplyushkin.models.Collection;
-import com.tintin.theplyushkin.models.CollectionType;
-import com.tintin.theplyushkin.models.User;
+import com.tintin.theplyushkin.models.*;
+import com.tintin.theplyushkin.models.util.DataType;
 import com.tintin.theplyushkin.models.util.VisibilityLevel;
 import com.tintin.theplyushkin.security.PersonDetails;
 import com.tintin.theplyushkin.services.CollectionTypesService;
+import com.tintin.theplyushkin.services.FeaturesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
-import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
-
-import static com.tintin.theplyushkin.controllers.CollectionsController.DEFAULT_VISIBILITY_OF_COLLECTION;
 
 @Controller
 @RequestMapping("/collection-blanks")
 public class CollectionBlanksController {
     private final CollectionTypesService collectionTypesService;
+    private final FeaturesService featuresService;
 
     @Autowired
-    public CollectionBlanksController(CollectionTypesService collectionTypesService) {
+    public CollectionBlanksController(CollectionTypesService collectionTypesService, FeaturesService featuresService) {
         this.collectionTypesService = collectionTypesService;
+        this.featuresService = featuresService;
     }
 
     @RequestMapping()
@@ -46,45 +45,65 @@ public class CollectionBlanksController {
     }
 
     @RequestMapping("/new")
-    public String newCollectionBlank(Model model) {
-//        model.addAttribute("typesOfCollection", collectionTypesService.findAll());
-//        model.addAttribute("collection", new Collection());
-//
-//        return "collections/new_user_collection";
-        return null;
+    public String newCollectionBlank() {
+        return "collection-blanks/new_collection_blank";
     }
 
     @PostMapping("/add")
-    public String addCollectionBlank(Model model,
-                                @RequestParam("image") MultipartFile multipartFile,
-                                @ModelAttribute("newCollection") Collection collection) throws IOException {
-//        User user = getCurrentUser();
-//        String fileName = saveCollectionImage(multipartFile, collection);
-//
-//        collection.setImgUrl(fileName);
-//        collection.setId(null);
-//        collection.setCollectionType(
-//                collectionTypesService.findById(
-//                        collection.getCollectionType().getId()
-//                )
-//        );
-//        collection.setLikes(0);
-//        collection.setUser(user);
-//        collection.setVisibility(DEFAULT_VISIBILITY_OF_COLLECTION);
-//
-//        Collection savedCollection = collectionsService.save(collection);
-//        model.addAttribute("collectionId", savedCollection.getId());
-//
-//        return "redirect:/collections/my/" + savedCollection.getId();
-        return null;
+    public String addItem(@RequestParam("blankName") String blankName,
+                          @RequestParam Map<String, String> allFeatures) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        PersonDetails userDetails = (PersonDetails) authentication.getPrincipal();
+        var user = userDetails.getPerson();
+
+        var collectionType = new CollectionType();
+        collectionType.setName(blankName);
+        collectionType.setVisibility(VisibilityLevel.PUBLIC);
+        collectionType.setUser(user);
+        collectionType = collectionTypesService.save(collectionType);
+
+        for (var entry : allFeatures.entrySet()) {
+            if (!entry.getValue().isBlank()) {
+                var feature = new Feature();
+                feature.setName(entry.getValue());
+                feature.setCollectionType(collectionType);
+                switch (entry.getKey()) {
+                    case "1":
+                        feature.setDataType(DataType.valueOf(allFeatures.get("1t")));
+                        featuresService.save(feature);
+                        break;
+                    case "2":
+                        feature.setDataType(DataType.valueOf(allFeatures.get("2t")));
+                        featuresService.save(feature);
+                        break;
+                    case "3":
+                        feature.setDataType(DataType.valueOf(allFeatures.get("3t")));
+                        featuresService.save(feature);
+                        break;
+                    case "4":
+                        feature.setDataType(DataType.valueOf(allFeatures.get("4t")));
+                        featuresService.save(feature);
+                        break;
+                    case "5":
+                        feature.setDataType(DataType.valueOf(allFeatures.get("5t")));
+                        featuresService.save(feature);
+                        break;
+                    case "6":
+                        feature.setDataType(DataType.valueOf(allFeatures.get("6t")));
+                        featuresService.save(feature);
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
+        return "redirect:/collection-blanks";
     }
 
     @DeleteMapping("/{id}")
     public String deleteCollectionBlank(@PathVariable("id") int id) {
-        System.out.println("test ok");
-
         var collectionBlank = collectionTypesService.findById(id);
-        System.out.println(collectionBlank);
         collectionBlank.setVisibility(VisibilityLevel.DELETED);
         collectionTypesService.save(collectionBlank);
 

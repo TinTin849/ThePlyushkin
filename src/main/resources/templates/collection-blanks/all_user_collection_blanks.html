@@ -42,7 +42,7 @@
             <a class="nav-link mx-2 text-uppercase" href="/collection-blanks">Шаблоны коллекций</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link mx-2 text-uppercase" href="#">О сайте</a>
+            <a class="nav-link mx-2 text-uppercase" href="/about">О сайте</a>
           </li>
         </ul>
         <ul class="navbar-nav ms-auto ">
@@ -65,10 +65,10 @@
           <div class="row justify-content-center">
             <!-- topic-item -->
             <div class="col-lg-4 col-sm-6 mb-4" th:each="blank : ${blanksOfUser}">
-              <a class="px-4 py-5 bg-white shadow text-center d-block match-height">
+              <a class="px-4 py-5 bg-white shadow text-center d-block match-height"
+                 style="color:#000000; text-decoration:none;">
                 <i class="ti-panel icon text-primary d-block mb-4"></i>
-                <h3 class="mb-3 mt-0" th:text="${blank.name}"
-                    style="color:#000000; text-decoration:none;">
+                <h3 class="mb-3 mt-0" th:text="${blank.name}">
                   Название шаблона
                 </h3>
                 <form th:action="@{/collection-blanks/{id}(id=${blank.getId()})}" th:method="DELETE">
@@ -95,6 +95,7 @@
 </section>
 
 <!-- Подвал сайта -->
+<br>
 <footer class="page-footer font-small blue" style="height: 62px; background-color: #e3f2fd;">
   <!-- Copyright -->
   <div class="footer-copyright text-center py-1">

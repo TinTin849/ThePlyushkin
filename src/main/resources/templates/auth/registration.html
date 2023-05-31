@@ -22,7 +22,7 @@
 <!----------------------СЕКЦИЯ Регистрация------------------------------>
 <section><br><br><br><br><br>
     <!--br'ки временные, т.к. каким-то магическим образом не работают педдинги в css, есть предположение что блокирует код на java-->
-    <div class="container-xxl w-25">
+    <div class="container-xxl w-50">
         <p class="fs-3">Добро пожаловать в Плюшкин!</p>
         <br>
         <form th:method="POST" th:action="@{/auth/registration}" th:object="${user}">
@@ -38,6 +38,16 @@
                 <input type="text" class="form-control" th:field="*{phone}" id="phone" placeholder="8 (   ) -   -   "
                        aria-describedby="phoneHelp">
                 <div id="phoneHelp" class="form-text">Телефон для верификации</div>
+            </div>
+
+            <div class="mb-3">
+                <label for="firstName" class="form-label">Ваше имя</label>
+                <input type="text" class="form-control" th:field="*{firstName}" id="firstName">
+            </div>
+
+            <div class="mb-3">
+                <label for="lastName" class="form-label">Ваша фамилия</label>
+                <input type="text" class="form-control" th:field="*{lastName}" id="lastName">
             </div>
 
             <div class="mb-3">

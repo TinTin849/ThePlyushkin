@@ -16,6 +16,7 @@
 
     <link rel="shortcut icon" href="/images/icon.jpg"> <!-- иконка сайта -->
     <link rel="stylesheet" href="/css/style_for_main.css">
+    <link rel="stylesheet" href="/css/my_main.css">
 </head>
 
 <body>
@@ -40,7 +41,7 @@
                     <a class="nav-link mx-2 text-uppercase" href="/collection-blanks">Шаблоны коллекций</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link mx-2 text-uppercase" href="#">О сайте</a>
+                    <a class="nav-link mx-2 text-uppercase" href="/about">О сайте</a>
                 </li>
             </ul>
             <ul class="navbar-nav ms-auto ">
@@ -82,12 +83,12 @@
                         <!-- topic-item -->
                         <div class="col-lg-4 col-sm-6 mb-4" th:each="collection : ${publicCollections}">
                             <a th:href="@{../collections/my/{id}(id=${collection.getId()})}"
-                               class="px-4 py-5 bg-white shadow text-center d-block match-height">
+                               class="px-4 py-5 bg-white shadow text-center d-block match-height"
+                               style="color:#000000; text-decoration:none;">
                                 <i class="ti-panel icon text-primary d-block mb-4"></i>
                                 <img th:src="@{../images/collections/{id}(id=${collection.getId()})}"
                                      alt="Lights" style="width:100%">
-                                <h3 class="mb-3 mt-0" th:text="${collection.getName()}"
-                                    style="color:#000000; text-decoration:none;">
+                                <h3 class="mb-3 mt-0" th:text="${collection.getName()}">
                                     Название коллекции
                                 </h3>
                             </a>

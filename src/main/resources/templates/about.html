@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="ru" xmlns:th="http://www.thymeleaf.org">
+<html lang="ru">
 <head>
     <!-- Обязательные метатеги -->
     <meta charset="utf-8">
@@ -14,12 +14,12 @@
             integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
             crossorigin="anonymous"></script>
 
-    <link rel="shortcut icon" href="/images/icon.jpg"> <!-- иконка сайта -->
-    <link rel="stylesheet" href="/css/style_for_my_collection_add.css">
     <link rel="stylesheet" href="/css/my_main.css">
+    <link rel="shortcut icon" href="/images/icon.jpg"> <!-- иконка сайта -->
 </head>
 
 <body>
+
 <nav class="navbar navbar-expand-lg sticky-top navbar-light p-3 shadow-sm" style="background-color: #e3f2fd;">
     <div class="container">
         <a class="navbar-brand" href="/collections"><i class="fa-solid fa-shop me-2"></i> <strong>ПЛЮШКИН</strong></a>
@@ -40,41 +40,39 @@
                     <a class="nav-link mx-2 text-uppercase" href="/collection-blanks">Шаблоны коллекций</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link mx-2 text-uppercase" href="/about">О сайте</a>
+                    <a class="nav-link mx-2 text-uppercase" href="#">О сайте</a>
                 </li>
             </ul>
             <ul class="navbar-nav ms-auto ">
                 <li class="nav-item">
-                    <a class="nav-link mx-2 text-uppercase" href="/account"><i class="fa-solid fa-circle-user me-1"></i> Аккаунт</a>
+                    <a class="nav-link mx-2 text-uppercase" href="/account"><i class="fa-solid fa-circle-user me-1"></i>
+                        Аккаунт</a>
                 </li>
             </ul>
         </div>
     </div>
 </nav>
-<!----------------------СЕКЦИЯ Добавление коллекции------------------------------>
-<section>
-    <div class="container-m">
-        <div class="layout-my-collections">
-            <div class="flex-wrapper-one">
-                <p class="my-collections">Мои коллекции</p>
-            </div>
 
-            <div class="container-xxl w-50">
-                <form class="form-horizontal" th:method="PUSH" th:action="@{/items/add/{id}(id=${collectionItem.getId()})}">
-                    <div class="form-group mb-3" th:each="feature : ${featuresOfCollectionType}">
-                        <label class="control-label" th:for="${feature.name}" th:text="${feature.getName()}">Text</label>
-                        <div >
-                            <input type="text" class="form-control"
-                                   th:name="${feature.id}"
-                                   th:id="${feature.name}"
-                                   th:placeholder="${feature.getName()}">
-                        </div>
-                    </div>
-                    <br>
-                    <div class="d-grid gap-3">
-                        <button type="submit" class="btn btn-primary btn-block">Записать</button>
-                    </div>
-                </form>
+<br>
+<section class="mb-20">
+    <div class="container">
+        <div class="row">
+            <div class="lg:col-10 mx-auto">
+                <div class="text-center pt-[70px] pb-16"><h1>О приложении</h1></div>
+                <div class="content"><h3>Кто мы?</h3>
+                    <p><strong><a href="/collections" style="color:#000000; text-decoration:none;">Плюшкин</a></strong>
+                        - современный сервис для работы с коллекциями,
+                        созданный в ходе работы над выпускной квалификационной работы студента направления
+                        программная инженерия.</p>
+                    <p>Создатель сервиса <strong>
+                        <a href="https://github.com/TinTin849" style="color:#000000; text-decoration:none;">Луговой
+                            Антон</a>
+                    </strong> - выпускник <a href="https://www.sut.ru/" style="color:#000000; text-decoration:none;">СПбГУТ
+                        2023.</a>
+                    <h3>Основная цель</h3>
+                    <p>Развитие культуры коллекционирования - главное к чему стремится и ради чего был
+                        создан этот сервис.</p>
+                </div>
             </div>
         </div>
     </div>
@@ -82,7 +80,7 @@
 
 <!-- Подвал сайта -->
 <br>
-<footer class="page-footer font-small blue" style="height: 62px; background-color: #e3f2fd;">
+<footer class="page-footer font-small blue" style="height: 62px; background-color: #e3f2fd;" id="footer">
     <!-- Copyright -->
     <div class="footer-copyright text-center py-1">
         plushkin@gmail.com <br>© "Плюшкин" 2023

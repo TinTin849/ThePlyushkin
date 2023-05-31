@@ -39,7 +39,7 @@
                     <a class="nav-link mx-2 text-uppercase" href="/collection-blanks">Шаблоны коллекций</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link mx-2 text-uppercase" href="#">О сайте</a>
+                    <a class="nav-link mx-2 text-uppercase" href="/about">О сайте</a>
                 </li>
             </ul>
             <ul class="navbar-nav ms-auto ">
@@ -90,12 +90,12 @@
                             <!-- Form Group (first name)-->
                             <div class="col-md-6">
                                 <label class="small mb-1" for="inputFirstName">Имя</label>
-                                <input class="form-control" id="inputFirstName" type="text" placeholder="Введите ваше имя" value="Антон">
+                                <input class="form-control" id="inputFirstName" type="text" placeholder="Введите ваше имя" th:value="${user.firstName}">
                             </div>
                             <!-- Form Group (last name)-->
                             <div class="col-md-6">
                                 <label class="small mb-1" for="inputLastName">Фамилия</label>
-                                <input class="form-control" id="inputLastName" type="text" placeholder="Введите вашу фамилию" value="Луговой">
+                                <input class="form-control" id="inputLastName" type="text" placeholder="Введите вашу фамилию" th:value="${user.lastName}">
                             </div>
                         </div>
 <!--                        &lt;!&ndash; Form Row        &ndash;&gt;-->
