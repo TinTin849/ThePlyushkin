@@ -67,33 +67,12 @@ public class CollectionBlanksController {
                 var feature = new Feature();
                 feature.setName(entry.getValue());
                 feature.setCollectionType(collectionType);
-                switch (entry.getKey()) {
-                    case "1":
-                        feature.setDataType(DataType.valueOf(allFeatures.get("1t")));
-                        featuresService.save(feature);
-                        break;
-                    case "2":
-                        feature.setDataType(DataType.valueOf(allFeatures.get("2t")));
-                        featuresService.save(feature);
-                        break;
-                    case "3":
-                        feature.setDataType(DataType.valueOf(allFeatures.get("3t")));
-                        featuresService.save(feature);
-                        break;
-                    case "4":
-                        feature.setDataType(DataType.valueOf(allFeatures.get("4t")));
-                        featuresService.save(feature);
-                        break;
-                    case "5":
-                        feature.setDataType(DataType.valueOf(allFeatures.get("5t")));
-                        featuresService.save(feature);
-                        break;
-                    case "6":
-                        feature.setDataType(DataType.valueOf(allFeatures.get("6t")));
-                        featuresService.save(feature);
-                        break;
-                    default:
-                        break;
+
+                try {
+                    int num = Integer.parseInt(entry.getKey());
+                    feature.setDataType(DataType.valueOf(allFeatures.get(num + "t")));
+                    featuresService.save(feature);
+                } catch (NumberFormatException ignored) {
                 }
             }
         }
