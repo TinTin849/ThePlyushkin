@@ -1,0 +1,383 @@
+@startuml
+
+title __THEPLYUSHKIN's Class Diagram__\n
+
+  namespace com.tintin.theplyushkin {
+    class com.tintin.theplyushkin.ThePlyushkinApplication {
+    }
+  }
+  
+
+  namespace com.tintin.theplyushkin {
+    namespace config {
+      class com.tintin.theplyushkin.config.SecurityConfig {
+      }
+    }
+  }
+  
+
+  namespace com.tintin.theplyushkin {
+    namespace controllers {
+      class com.tintin.theplyushkin.controllers.AccountController {
+      }
+    }
+  }
+  
+
+  namespace com.tintin.theplyushkin {
+    namespace controllers {
+      class com.tintin.theplyushkin.controllers.CollectionBlanksController {
+      }
+    }
+  }
+  
+
+  namespace com.tintin.theplyushkin {
+    namespace controllers {
+      class com.tintin.theplyushkin.controllers.CollectionsController {
+      }
+    }
+  }
+  
+
+  namespace com.tintin.theplyushkin {
+    namespace controllers {
+      class com.tintin.theplyushkin.controllers.DefaultController {
+      }
+    }
+  }
+  
+
+  namespace com.tintin.theplyushkin {
+    namespace controllers {
+      class com.tintin.theplyushkin.controllers.ImagesController {
+      }
+    }
+  }
+  
+
+  namespace com.tintin.theplyushkin {
+    namespace controllers {
+      class com.tintin.theplyushkin.controllers.ItemsController {
+      }
+    }
+  }
+  
+
+  namespace com.tintin.theplyushkin {
+    namespace controllers {
+      namespace security {
+        class com.tintin.theplyushkin.controllers.security.AccessController {
+        }
+      }
+    }
+  }
+  
+
+  namespace com.tintin.theplyushkin {
+    namespace controllers {
+      namespace security {
+        class com.tintin.theplyushkin.controllers.security.AuthController {
+        }
+      }
+    }
+  }
+  
+
+  namespace com.tintin.theplyushkin {
+    namespace models {
+      class com.tintin.theplyushkin.models.Collection {
+      }
+    }
+  }
+  
+
+  namespace com.tintin.theplyushkin {
+    namespace models {
+      class com.tintin.theplyushkin.models.CollectionType {
+      }
+    }
+  }
+  
+
+  namespace com.tintin.theplyushkin {
+    namespace models {
+      class com.tintin.theplyushkin.models.Feature {
+      }
+    }
+  }
+  
+
+  namespace com.tintin.theplyushkin {
+    namespace models {
+      class com.tintin.theplyushkin.models.Item {
+      }
+    }
+  }
+  
+
+  namespace com.tintin.theplyushkin {
+    namespace models {
+      class com.tintin.theplyushkin.models.ItemFeature {
+      }
+    }
+  }
+  
+
+  namespace com.tintin.theplyushkin {
+    namespace models {
+      class com.tintin.theplyushkin.models.ItemImage {
+      }
+    }
+  }
+  
+
+  namespace com.tintin.theplyushkin {
+    namespace models {
+      class com.tintin.theplyushkin.models.User {
+      }
+    }
+  }
+  
+
+  namespace com.tintin.theplyushkin {
+    namespace models {
+      namespace util {
+        enum AccessLevel {
+        }
+      }
+    }
+  }
+  
+
+  namespace com.tintin.theplyushkin {
+    namespace models {
+      namespace util {
+        enum DataType {
+        }
+      }
+    }
+  }
+  
+
+  namespace com.tintin.theplyushkin {
+    namespace models {
+      namespace util {
+        enum VisibilityLevel {
+        }
+      }
+    }
+  }
+  
+
+  namespace com.tintin.theplyushkin {
+    namespace repositories {
+      interface com.tintin.theplyushkin.repositories.CollectionTypesRepository {
+      }
+    }
+  }
+  
+
+  namespace com.tintin.theplyushkin {
+    namespace repositories {
+      interface com.tintin.theplyushkin.repositories.CollectionsRepository {
+      }
+    }
+  }
+  
+
+  namespace com.tintin.theplyushkin {
+    namespace repositories {
+      interface com.tintin.theplyushkin.repositories.FeaturesRepository {
+      }
+    }
+  }
+  
+
+  namespace com.tintin.theplyushkin {
+    namespace repositories {
+      interface com.tintin.theplyushkin.repositories.ItemFeaturesRepository {
+      }
+    }
+  }
+  
+
+  namespace com.tintin.theplyushkin {
+    namespace repositories {
+      interface com.tintin.theplyushkin.repositories.ItemImageRepository {
+      }
+    }
+  }
+  
+
+  namespace com.tintin.theplyushkin {
+    namespace repositories {
+      interface com.tintin.theplyushkin.repositories.ItemsRepository {
+      }
+    }
+  }
+  
+
+  namespace com.tintin.theplyushkin {
+    namespace repositories {
+      interface com.tintin.theplyushkin.repositories.UsersRepository {
+      }
+    }
+  }
+  
+
+  namespace com.tintin.theplyushkin {
+    namespace security {
+      class com.tintin.theplyushkin.security.PersonDetails {
+      }
+    }
+  }
+  
+
+  namespace com.tintin.theplyushkin {
+    namespace services {
+      class com.tintin.theplyushkin.services.CollectionTypesService {
+      }
+    }
+  }
+  
+
+  namespace com.tintin.theplyushkin {
+    namespace services {
+      class com.tintin.theplyushkin.services.CollectionsService {
+      }
+    }
+  }
+  
+
+  namespace com.tintin.theplyushkin {
+    namespace services {
+      class com.tintin.theplyushkin.services.FeaturesService {
+      }
+    }
+  }
+  
+
+  namespace com.tintin.theplyushkin {
+    namespace services {
+      class com.tintin.theplyushkin.services.ItemFeaturesService {
+      }
+    }
+  }
+  
+
+  namespace com.tintin.theplyushkin {
+    namespace services {
+      class com.tintin.theplyushkin.services.ItemImagesService {
+      }
+    }
+  }
+  
+
+  namespace com.tintin.theplyushkin {
+    namespace services {
+      class com.tintin.theplyushkin.services.ItemsService {
+      }
+    }
+  }
+  
+
+  namespace com.tintin.theplyushkin {
+    namespace services {
+      namespace security {
+        class com.tintin.theplyushkin.services.security.PeopleService {
+        }
+      }
+    }
+  }
+  
+
+  namespace com.tintin.theplyushkin {
+    namespace services {
+      namespace security {
+        class com.tintin.theplyushkin.services.security.PersonDetailsService {
+        }
+      }
+    }
+  }
+  
+
+  namespace com.tintin.theplyushkin {
+    namespace services {
+      namespace security {
+        class com.tintin.theplyushkin.services.security.RegistrationService {
+        }
+      }
+    }
+  }
+  
+
+  namespace com.tintin.theplyushkin {
+    namespace util {
+      class com.tintin.theplyushkin.util.FileUploadUtil {
+      }
+    }
+  }
+  
+
+  namespace com.tintin.theplyushkin {
+    namespace util {
+      class com.tintin.theplyushkin.util.PersonValidator {
+      }
+    }
+  }
+  
+
+  com.tintin.theplyushkin.config.SecurityConfig -up-|> org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter
+  com.tintin.theplyushkin.config.SecurityConfig o-- com.tintin.theplyushkin.services.security.PersonDetailsService : personDetailsService
+  com.tintin.theplyushkin.controllers.CollectionBlanksController o-- com.tintin.theplyushkin.services.CollectionTypesService : collectionTypesService
+  com.tintin.theplyushkin.controllers.CollectionBlanksController o-- com.tintin.theplyushkin.services.FeaturesService : featuresService
+  com.tintin.theplyushkin.controllers.CollectionsController o-- com.tintin.theplyushkin.services.CollectionTypesService : collectionTypesService
+  com.tintin.theplyushkin.controllers.CollectionsController o-- com.tintin.theplyushkin.services.CollectionsService : collectionsService
+  com.tintin.theplyushkin.controllers.ImagesController o-- com.tintin.theplyushkin.services.CollectionsService : collectionsService
+  com.tintin.theplyushkin.controllers.ImagesController o-- com.tintin.theplyushkin.services.ItemImagesService : itemImagesService
+  com.tintin.theplyushkin.controllers.ItemsController o-- com.tintin.theplyushkin.services.CollectionsService : collectionsService
+  com.tintin.theplyushkin.controllers.ItemsController o-- com.tintin.theplyushkin.services.FeaturesService : featuresService
+  com.tintin.theplyushkin.controllers.ItemsController o-- com.tintin.theplyushkin.services.ItemFeaturesService : itemFeaturesService
+  com.tintin.theplyushkin.controllers.ItemsController o-- com.tintin.theplyushkin.services.ItemImagesService : itemImagesService
+  com.tintin.theplyushkin.controllers.ItemsController o-- com.tintin.theplyushkin.services.ItemsService : itemsService
+  com.tintin.theplyushkin.controllers.security.AuthController o-- com.tintin.theplyushkin.util.PersonValidator : personValidator
+  com.tintin.theplyushkin.controllers.security.AuthController o-- com.tintin.theplyushkin.services.security.RegistrationService : registrationService
+  com.tintin.theplyushkin.models.Collection o-- com.tintin.theplyushkin.models.CollectionType : collectionType
+  com.tintin.theplyushkin.models.Collection o-- com.tintin.theplyushkin.models.User : user
+  com.tintin.theplyushkin.models.Collection o-- com.tintin.theplyushkin.models.util.VisibilityLevel : visibility
+  com.tintin.theplyushkin.models.CollectionType o-- com.tintin.theplyushkin.models.User : user
+  com.tintin.theplyushkin.models.CollectionType o-- com.tintin.theplyushkin.models.util.VisibilityLevel : visibility
+  com.tintin.theplyushkin.models.Feature o-- com.tintin.theplyushkin.models.CollectionType : collectionType
+  com.tintin.theplyushkin.models.Feature o-- com.tintin.theplyushkin.models.util.DataType : dataType
+  com.tintin.theplyushkin.models.Item o-- com.tintin.theplyushkin.models.Collection : collection
+  com.tintin.theplyushkin.models.Item o-- com.tintin.theplyushkin.models.util.VisibilityLevel : visibility
+  com.tintin.theplyushkin.models.ItemFeature o-- com.tintin.theplyushkin.models.Feature : feature
+  com.tintin.theplyushkin.models.ItemFeature o-- com.tintin.theplyushkin.models.Item : item
+  com.tintin.theplyushkin.models.ItemImage o-- com.tintin.theplyushkin.models.Item : item
+  com.tintin.theplyushkin.models.User o-- com.tintin.theplyushkin.models.util.AccessLevel : role
+  com.tintin.theplyushkin.models.User o-- com.tintin.theplyushkin.models.util.VisibilityLevel : visibility
+  com.tintin.theplyushkin.security.PersonDetails .up.|> org.springframework.security.core.userdetails.UserDetails
+  com.tintin.theplyushkin.security.PersonDetails o-- com.tintin.theplyushkin.models.User : user
+  com.tintin.theplyushkin.services.CollectionTypesService o-- com.tintin.theplyushkin.repositories.CollectionTypesRepository : collectionTypesRepository
+  com.tintin.theplyushkin.services.CollectionsService o-- com.tintin.theplyushkin.repositories.CollectionsRepository : collectionsRepository
+  com.tintin.theplyushkin.services.FeaturesService o-- com.tintin.theplyushkin.repositories.FeaturesRepository : featuresRepository
+  com.tintin.theplyushkin.services.ItemFeaturesService o-- com.tintin.theplyushkin.repositories.ItemFeaturesRepository : itemFeaturesRepository
+  com.tintin.theplyushkin.services.ItemImagesService o-- com.tintin.theplyushkin.repositories.ItemImageRepository : itemImageRepository
+  com.tintin.theplyushkin.services.ItemsService o-- com.tintin.theplyushkin.repositories.ItemsRepository : itemsRepository
+  com.tintin.theplyushkin.services.security.PeopleService o-- com.tintin.theplyushkin.repositories.UsersRepository : usersRepository
+  com.tintin.theplyushkin.services.security.PersonDetailsService .up.|> org.springframework.security.core.userdetails.UserDetailsService
+  com.tintin.theplyushkin.services.security.PersonDetailsService o-- com.tintin.theplyushkin.repositories.UsersRepository : usersRepository
+  com.tintin.theplyushkin.services.security.RegistrationService o-- com.tintin.theplyushkin.repositories.UsersRepository : usersRepository
+  com.tintin.theplyushkin.util.PersonValidator .up.|> org.springframework.validation.Validator
+  com.tintin.theplyushkin.util.PersonValidator o-- com.tintin.theplyushkin.services.security.PeopleService : peopleService
+
+
+right footer
+
+
+PlantUML diagram generated by SketchIt! (https://bitbucket.org/pmesmeur/sketch.it)
+For more information about this tool, please contact philippe.mesmeur@gmail.com
+endfooter
+
+@enduml

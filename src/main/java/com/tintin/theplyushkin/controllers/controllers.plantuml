@@ -1,0 +1,92 @@
+@startuml
+
+title __Диаграмма контроллеров приложения__\n
+
+  namespace com.tintin.theplyushkin {
+    namespace controllers {
+      class com.tintin.theplyushkin.controllers.AccountController {
+          + account()
+      }
+    }
+  }
+  
+
+  namespace com.tintin.theplyushkin {
+    namespace controllers {
+      class com.tintin.theplyushkin.controllers.CollectionBlanksController {
+          + addItem()
+          + allUserCollectionBlanks()
+          + deleteCollectionBlank()
+          + newCollectionBlank()
+      }
+    }
+  }
+  
+
+  namespace com.tintin.theplyushkin {
+    namespace controllers {
+      class com.tintin.theplyushkin.controllers.CollectionsController {
+          + addCollection()
+          + allUserCollections()
+          + changeVisibility()
+          + deleteCollection()
+          + index()
+          + newCollection()
+          + userCollection()
+          {static} - getCurrentUser()
+          {static} - saveCollectionImage()
+      }
+    }
+  }
+  
+
+  namespace com.tintin.theplyushkin {
+    namespace controllers {
+      class com.tintin.theplyushkin.controllers.DefaultController {
+          + about()
+          + defaultAfterLogin()
+      }
+    }
+  }
+  
+
+  namespace com.tintin.theplyushkin {
+    namespace controllers {
+      class com.tintin.theplyushkin.controllers.ImagesController {
+          + showImageOfCollection()
+          + showImageOfItem()
+          - showImage()
+      }
+    }
+  }
+  
+
+  namespace com.tintin.theplyushkin {
+    namespace controllers {
+      class com.tintin.theplyushkin.controllers.ItemsController {
+          + addItem()
+          + collectionItem()
+          + deleteItem()
+          + newItem()
+          + newItemFeatures()
+          {static} - getCurrentUser()
+          {static} - saveItemImage()
+      }
+    }
+  }
+  
+
+  com.tintin.theplyushkin.controllers.CollectionBlanksController o-- com.tintin.theplyushkin.services.CollectionTypesService : collectionTypesService
+  com.tintin.theplyushkin.controllers.CollectionBlanksController o-- com.tintin.theplyushkin.services.FeaturesService : featuresService
+  com.tintin.theplyushkin.controllers.CollectionsController o-- com.tintin.theplyushkin.services.CollectionTypesService : collectionTypesService
+  com.tintin.theplyushkin.controllers.CollectionsController o-- com.tintin.theplyushkin.services.CollectionsService : collectionsService
+  com.tintin.theplyushkin.controllers.ImagesController o-- com.tintin.theplyushkin.services.CollectionsService : collectionsService
+  com.tintin.theplyushkin.controllers.ImagesController o-- com.tintin.theplyushkin.services.ItemImagesService : itemImagesService
+  com.tintin.theplyushkin.controllers.ItemsController o-- com.tintin.theplyushkin.services.CollectionsService : collectionsService
+  com.tintin.theplyushkin.controllers.ItemsController o-- com.tintin.theplyushkin.services.FeaturesService : featuresService
+  com.tintin.theplyushkin.controllers.ItemsController o-- com.tintin.theplyushkin.services.ItemFeaturesService : itemFeaturesService
+  com.tintin.theplyushkin.controllers.ItemsController o-- com.tintin.theplyushkin.services.ItemImagesService : itemImagesService
+  com.tintin.theplyushkin.controllers.ItemsController o-- com.tintin.theplyushkin.services.ItemsService : itemsService
+
+
+@enduml

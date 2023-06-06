@@ -1,0 +1,114 @@
+@startuml
+
+title __Диаграмма моделей приложения__\n
+
+  namespace com.tintin.theplyushkin {
+    namespace models {
+      class com.tintin.theplyushkin.models.Collection {
+          - description : String
+          - id : Integer
+          - imgUrl : String
+          - items : List<Item>
+          - likes : Integer
+          - name : String
+      }
+    }
+  }
+  
+
+  namespace com.tintin.theplyushkin {
+    namespace models {
+      class com.tintin.theplyushkin.models.CollectionType {
+          - featuresOfCollectionType : List<Feature>
+          - id : int
+          - name : String
+
+      }
+    }
+  }
+  
+
+  namespace com.tintin.theplyushkin {
+    namespace models {
+      class com.tintin.theplyushkin.models.Feature {
+          - id : int
+          - name : String
+
+      }
+    }
+  }
+  
+
+  namespace com.tintin.theplyushkin {
+    namespace models {
+      class com.tintin.theplyushkin.models.Item {
+          - description : String
+          - featuresOfItem : List<ItemFeature>
+          - id : Integer
+          - isActive : Boolean
+          - itemImages : List<ItemImage>
+          - likes : Integer
+          - name : String
+
+      }
+    }
+  }
+  
+
+  namespace com.tintin.theplyushkin {
+    namespace models {
+      class com.tintin.theplyushkin.models.ItemFeature {
+          - data : String
+          - id : int
+
+      }
+    }
+  }
+  
+
+  namespace com.tintin.theplyushkin {
+    namespace models {
+      class com.tintin.theplyushkin.models.ItemImage {
+          - id : Integer
+          - imgUrl : String
+
+      }
+    }
+  }
+  
+
+  namespace com.tintin.theplyushkin {
+    namespace models {
+      class com.tintin.theplyushkin.models.User {
+          - email : String
+          - firstName : String
+          - id : int
+          - imgUrl : String
+          - isActive : Boolean
+          - lastName : String
+          - password : String
+          - phone : String
+          - username : String
+
+      }
+    }
+  }
+  
+
+  com.tintin.theplyushkin.models.Collection o-- com.tintin.theplyushkin.models.CollectionType : collectionType
+  com.tintin.theplyushkin.models.Collection o-- com.tintin.theplyushkin.models.User : user
+  com.tintin.theplyushkin.models.Collection o-- com.tintin.theplyushkin.models.util.VisibilityLevel : visibility
+  com.tintin.theplyushkin.models.CollectionType o-- com.tintin.theplyushkin.models.User : user
+  com.tintin.theplyushkin.models.CollectionType o-- com.tintin.theplyushkin.models.util.VisibilityLevel : visibility
+  com.tintin.theplyushkin.models.Feature o-- com.tintin.theplyushkin.models.CollectionType : collectionType
+  com.tintin.theplyushkin.models.Feature o-- com.tintin.theplyushkin.models.util.DataType : dataType
+  com.tintin.theplyushkin.models.Item o-- com.tintin.theplyushkin.models.Collection : collection
+  com.tintin.theplyushkin.models.Item o-- com.tintin.theplyushkin.models.util.VisibilityLevel : visibility
+  com.tintin.theplyushkin.models.ItemFeature o-- com.tintin.theplyushkin.models.Feature : feature
+  com.tintin.theplyushkin.models.ItemFeature o-- com.tintin.theplyushkin.models.Item : item
+  com.tintin.theplyushkin.models.ItemImage o-- com.tintin.theplyushkin.models.Item : item
+  com.tintin.theplyushkin.models.User o-- com.tintin.theplyushkin.models.util.AccessLevel : role
+  com.tintin.theplyushkin.models.User o-- com.tintin.theplyushkin.models.util.VisibilityLevel : visibility
+
+
+@enduml

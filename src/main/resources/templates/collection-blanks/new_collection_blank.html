@@ -47,7 +47,8 @@
             </ul>
             <ul class="navbar-nav ms-auto ">
                 <li class="nav-item">
-                    <a class="nav-link mx-2 text-uppercase" href="/account"><i class="fa-solid fa-circle-user me-1"></i> Аккаунт</a>
+                    <a class="nav-link mx-2 text-uppercase" href="/account"><i class="fa-solid fa-circle-user me-1"></i>
+                        Аккаунт</a>
                 </li>
             </ul>
         </div>
@@ -82,10 +83,10 @@
                             <div class="input-group mb-3">
                                 <div class="col-9">
                                     <input type="text" class="form-control"
-                                    name="1"
-                                    id="feature1"
-                                    placeholder="Название и тип данных ->">
-                                    </div>
+                                           name="1"
+                                           id="feature1"
+                                           placeholder="Название и тип данных ->">
+                                </div>
                                 <select class="form-control col-3" name="1t">
                                     <option value="STRING">Текст</option>
                                     <option value="INTEGER">Целое число</option>
@@ -118,7 +119,7 @@
                     function () {
                         counter++;
                         const newRowAdd =
-                                '<div id="addedInput">' +
+                            '<div id="addedInput">' +
                                 '<label class="control-label" for="feature' + counter + '">Характеристика</label>' +
                                 '<div class="justify-content-center">' +
                                     '<div class="input-group mb-3">' +
@@ -140,7 +141,7 @@
                                         '</select>' +
                                     '</div>' +
                                 '</div>' +
-                                '</div>';
+                            '</div>';
                         $('#newInput').append(newRowAdd);
                     }
                 );

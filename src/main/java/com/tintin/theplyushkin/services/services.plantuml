@@ -1,0 +1,85 @@
+@startuml
+
+title __Диаграмма сервисов приложения__\n
+
+  namespace com.tintin.theplyushkin {
+    namespace services {
+      class com.tintin.theplyushkin.services.CollectionTypesService {
+          + CollectionTypesService()
+          + findAll()
+          + findById()
+          + findByUser()
+          + save()
+      }
+    }
+  }
+  
+
+  namespace com.tintin.theplyushkin {
+    namespace services {
+      class com.tintin.theplyushkin.services.CollectionsService {
+          + CollectionsService()
+          + deleteById()
+          + findById()
+          + findByUser()
+          + findPublic()
+          + getItemsOfCollection()
+          + save()
+      }
+    }
+  }
+  
+
+  namespace com.tintin.theplyushkin {
+    namespace services {
+      class com.tintin.theplyushkin.services.FeaturesService {
+          + FeaturesService()
+          + findById()
+          + save()
+      }
+    }
+  }
+  
+
+  namespace com.tintin.theplyushkin {
+    namespace services {
+      class com.tintin.theplyushkin.services.ItemFeaturesService {
+          + ItemFeaturesService()
+          + save()
+      }
+    }
+  }
+  
+
+  namespace com.tintin.theplyushkin {
+    namespace services {
+      class com.tintin.theplyushkin.services.ItemImagesService {
+          + ItemImagesService()
+          + findByItemId()
+          + save()
+      }
+    }
+  }
+  
+
+  namespace com.tintin.theplyushkin {
+    namespace services {
+      class com.tintin.theplyushkin.services.ItemsService {
+          + ItemsService()
+          + delete()
+          + findById()
+          + save()
+      }
+    }
+  }
+  
+
+  com.tintin.theplyushkin.services.CollectionTypesService o-- com.tintin.theplyushkin.repositories.CollectionTypesRepository : collectionTypesRepository
+  com.tintin.theplyushkin.services.CollectionsService o-- com.tintin.theplyushkin.repositories.CollectionsRepository : collectionsRepository
+  com.tintin.theplyushkin.services.FeaturesService o-- com.tintin.theplyushkin.repositories.FeaturesRepository : featuresRepository
+  com.tintin.theplyushkin.services.ItemFeaturesService o-- com.tintin.theplyushkin.repositories.ItemFeaturesRepository : itemFeaturesRepository
+  com.tintin.theplyushkin.services.ItemImagesService o-- com.tintin.theplyushkin.repositories.ItemImageRepository : itemImageRepository
+  com.tintin.theplyushkin.services.ItemsService o-- com.tintin.theplyushkin.repositories.ItemsRepository : itemsRepository
+
+
+@enduml
